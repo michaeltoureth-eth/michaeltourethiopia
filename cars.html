@@ -179,13 +179,6 @@
         .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
         .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
 
-        .loading-spinner {
-            text-align: center;
-            padding: 3rem;
-            grid-column: 1/-1;
-        }
-        .loading-spinner i { font-size: 2rem; color: #DAA520; margin-bottom: 1rem; }
-
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; text-align: center; }
             .page-header h1 { font-size: 1.8rem; }
@@ -236,15 +229,10 @@
 
 <div class="container">
     <div class="info-box" id="infoBox">
-        <p><i class="fas fa-info-circle"></i> <span id="infoText">All vehicles are well-maintained, equipped with AC, and ready for both city and off-road adventures. Prices are updated in real-time.</span></p>
+        <p><i class="fas fa-info-circle"></i> <span id="infoText">All vehicles are well-maintained, equipped with AC, and ready for both city and off-road adventures. Contact us for booking.</span></p>
     </div>
 
-    <div class="cars-grid" id="carsGrid">
-        <div class="loading-spinner">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Loading cars and prices...</p>
-        </div>
-    </div>
+    <div class="cars-grid" id="carsGrid"></div>
 </div>
 
 <footer class="footer">
@@ -255,8 +243,108 @@
 </footer>
 
 <script>
-    // YOUR GOOGLE SHEET CSV LINK
-    const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRFGWXWRypwda4mFHQJg0HZVqyH-76GSs9SsEcT0wOh59LyYwx7b5BtlMpM7VYUEt3SiVj3slePQm-/pub?output=csv";
+    // ============================================================
+    // ALL 6 CARS WITH THEIR ACTUAL PRICES
+    // ============================================================
+    
+    const allCars = [
+        {
+            name_en: "Land Rover Defender 110",
+            name_ar: "لاند روفر ديفندر 110",
+            name_am: "ላንድ ሮቨር ዲፌንደር 110",
+            price: "5,500 ETB/day",
+            seats: "7 Seats",
+            seats_ar: "7 مقاعد",
+            seats_am: "7 መቀመጫዎች",
+            transmission: "Manual",
+            transmission_ar: "يدوي",
+            transmission_am: "በእጅ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/landroverdefender110.png"
+        },
+        {
+            name_en: "Land Rover Defender 110 (Black Edition)",
+            name_ar: "لاند روفر ديفندر 110 (النسخة السوداء)",
+            name_am: "ላንድ ሮቨር ዲፌንደር 110 (ጥቁር እትም)",
+            price: "6,000 ETB/day",
+            seats: "7 Seats",
+            seats_ar: "7 مقاعد",
+            seats_am: "7 መቀመጫዎች",
+            transmission: "Manual",
+            transmission_ar: "يدوي",
+            transmission_am: "በእጅ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/landroverdefender110black.png"
+        },
+        {
+            name_en: "Toyota Land Cruiser 76 Series",
+            name_ar: "تويوتا لاند كروزر 76",
+            name_am: "ቶዮታ ላንድ ክሩዘር 76",
+            price: "5,000 ETB/day",
+            seats: "5 Seats",
+            seats_ar: "5 مقاعد",
+            seats_am: "5 መቀመጫዎች",
+            transmission: "Manual",
+            transmission_ar: "يدوي",
+            transmission_am: "በእጅ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/toyotalc76.png"
+        },
+        {
+            name_en: "Toyota Land Cruiser 76 Series",
+            name_ar: "تويوتا لاند كروزر 76",
+            name_am: "ቶዮታ ላንድ ክሩዘር 76",
+            price: "5,000 ETB/day",
+            seats: "5 Seats",
+            seats_ar: "5 مقاعد",
+            seats_am: "5 መቀመጫዎች",
+            transmission: "Manual",
+            transmission_ar: "يدوي",
+            transmission_am: "በእጅ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/toyotalc76series.png"
+        },
+        {
+            name_en: "Toyota Land Cruiser 80 Series",
+            name_ar: "تويوتا لاند كروزر 80",
+            name_am: "ቶዮታ ላንድ ክሩዘር 80",
+            price: "4,500 ETB/day",
+            seats: "5 Seats",
+            seats_ar: "5 مقاعد",
+            seats_am: "5 መቀመጫዎች",
+            transmission: "Manual",
+            transmission_ar: "يدوي",
+            transmission_am: "በእጅ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/toyotalc80series.png"
+        },
+        {
+            name_en: "Toyota Land Cruiser 200 Series",
+            name_ar: "تويوتا لاند كروزر 200",
+            name_am: "ቶዮታ ላንድ ክሩዘር 200",
+            price: "8,000 ETB/day",
+            seats: "5 Seats",
+            seats_ar: "5 مقاعد",
+            seats_am: "5 መቀመጫዎች",
+            transmission: "Automatic",
+            transmission_ar: "أوتوماتيكي",
+            transmission_am: "አውቶማቲክ",
+            fuel: "Diesel",
+            fuel_ar: "ديزل",
+            fuel_am: "ናፍጣ",
+            image: "images/cars/toyotalc200series.png"
+        }
+    ];
 
     let currentLang = 'en';
 
@@ -264,119 +352,43 @@
         en: {
             pageTitle: 'Our Premium <span>Fleet</span>',
             pageSubtitle: 'Reliable, powerful, and comfortable vehicles for Ethiopian terrain',
-            infoText: 'All vehicles are well-maintained, equipped with AC, and ready for both city and off-road adventures. Prices are updated in real-time.',
+            infoText: 'All vehicles are well-maintained, equipped with AC, and ready for both city and off-road adventures. Contact us for booking.',
             footerText: 'Premium Car Rent & Tour',
             locationText: 'Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba',
             rightsText: 'All rights reserved',
-            requestBtn: 'Book Now →',
-            loading: 'Loading cars and prices...'
+            requestBtn: 'Book Now →'
         },
         ar: {
             pageTitle: 'أسطولنا <span>المتميز</span>',
             pageSubtitle: 'مركبات موثوقة وقوية ومريحة للتضاريس الإثيوبية',
-            infoText: 'جميع المركبات مجهزة ومزودة بتكييف الهواء وجاهزة للمغامرات. الأسعار محدثة بشكل فوري.',
+            infoText: 'جميع المركبات مجهزة ومزودة بتكييف الهواء وجاهزة للمغامرات. اتصل بنا للحجز.',
             footerText: 'تأجير سيارات فاخر وجولات',
             locationText: 'منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا',
             rightsText: 'جميع الحقوق محفوظة',
-            requestBtn: 'احجز الآن ←',
-            loading: 'جاري تحميل السيارات والأسعار...'
+            requestBtn: 'احجز الآن ←'
         },
         am: {
             pageTitle: 'የእኛ ፕሪሚየም <span>መርከቦች</span>',
             pageSubtitle: 'ለኢትዮጵያ መሬት አስተማማኝ፣ ኃይለኛ እና ምቹ ተሽከርካሪዎች',
-            infoText: 'ሁሉም ተሽከርካሪዎች በደንብ የተጠበቁ፣ ኤርኮንዲሽን የተገጠመላቸው። ዋጋዎች በእውነተኛ ጊዜ ይዘመናሉ።',
+            infoText: 'ሁሉም ተሽከርካሪዎች በደንብ የተጠበቁ፣ ኤርኮንዲሽን የተገጠመላቸው። ለቦታ ማስያዝ ያግኙን።',
             footerText: 'ፕሪሚየም የመኪና ኪራይ እና ጉብኝት',
             locationText: 'ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ',
             rightsText: 'መብቱ በህግ የተጠበቀ ነው',
-            requestBtn: 'አሁን ይያዙ →',
-            loading: 'መኪናዎች እና ዋጋዎች በመጫን ላይ...'
+            requestBtn: 'አሁን ይያዙ →'
         }
     };
 
-    // Car images mapping to your PNG files
-    const carImages = {
-        "Land Rover Defender 110": "images/cars/landroverdefender110.png",
-        "Land Rover Defender 110 Black": "images/cars/landroverdefender110black.png",
-        "Toyota Land Cruiser 76 Series": "images/cars/toyotalc76.png",
-        "Toyota Land Cruiser 80 Series": "images/cars/toyotalc80series.png",
-        "Toyota Land Cruiser 200 Series": "images/cars/toyotalc200series.png"
-    };
-
-    // Direct car data (will be used if Google Sheet fails)
-    const directCars = [
-        { name: "Land Rover Defender 110", name_ar: "لاند روفر ديفندر 110", name_am: "ላንድ ሮቨር ዲፌንደር 110", price: "5,500 ETB/day", seats: "7 Seats", seats_ar: "7 مقاعد", seats_am: "7 መቀመጫዎች", transmission: "Manual", transmission_ar: "يدوي", transmission_am: "በእጅ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/landroverdefender110.png" },
-        { name: "Land Rover Defender 110 Black", name_ar: "لاند روفر ديفندر 110 أسود", name_am: "ላንድ ሮቨር ዲፌንደር 110 ጥቁር", price: "6,000 ETB/day", seats: "7 Seats", seats_ar: "7 مقاعد", seats_am: "7 መቀመጫዎች", transmission: "Manual", transmission_ar: "يدوي", transmission_am: "በእጅ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/landroverdefender110black.png" },
-        { name: "Toyota Land Cruiser 76 Series", name_ar: "تويوتا لاند كروزر 76", name_am: "ቶዮታ ላንድ ክሩዘር 76", price: "5,000 ETB/day", seats: "5 Seats", seats_ar: "5 مقاعد", seats_am: "5 መቀመጫዎች", transmission: "Manual", transmission_ar: "يدوي", transmission_am: "በእጅ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/toyotalc76.png" },
-        { name: "Toyota Land Cruiser 76 Series (2nd)", name_ar: "تويوتا لاند كروزر 76", name_am: "ቶዮታ ላንድ ክሩዘር 76", price: "5,000 ETB/day", seats: "5 Seats", seats_ar: "5 مقاعد", seats_am: "5 መቀመጫዎች", transmission: "Manual", transmission_ar: "يدوي", transmission_am: "በእጅ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/toyotalc76series.png" },
-        { name: "Toyota Land Cruiser 80 Series", name_ar: "تويوتا لاند كروزر 80", name_am: "ቶዮታ ላንድ ክሩዘር 80", price: "4,500 ETB/day", seats: "5 Seats", seats_ar: "5 مقاعد", seats_am: "5 መቀመጫዎች", transmission: "Manual", transmission_ar: "يدوي", transmission_am: "በእጅ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/toyotalc80series.png" },
-        { name: "Toyota Land Cruiser 200 Series", name_ar: "تويوتا لاند كروزر 200", name_am: "ቶዮታ ላንድ ክሩዘር 200", price: "8,000 ETB/day", seats: "5 Seats", seats_ar: "5 مقاعد", seats_am: "5 መቀመጫዎች", transmission: "Automatic", transmission_ar: "أوتوماتيكي", transmission_am: "አውቶማቲክ", fuel: "Diesel", fuel_ar: "ديزل", fuel_am: "ናፍጣ", image: "images/cars/toyotalc200series.png" }
-    ];
-
-    async function loadCarsFromSheet() {
-        try {
-            const response = await fetch(GOOGLE_SHEET_URL);
-            const csvText = await response.text();
-            
-            console.log("CSV Response:", csvText.substring(0, 200));
-            
-            // Check if we got CSV or HTML
-            if (csvText.includes("<!DOCTYPE") || csvText.includes("<html")) {
-                console.log("Received HTML instead of CSV - using direct data");
-                return directCars;
-            }
-            
-            const rows = csvText.split('\n').filter(row => row.trim().length > 0);
-            
-            if (rows.length < 2) {
-                return directCars;
-            }
-            
-            const cars = [];
-            for (let i = 1; i < rows.length; i++) {
-                const values = rows[i].split(',');
-                if (values.length >= 5) {
-                    const carName = values[0].replace(/"/g, '').trim();
-                    if (carName.length > 0) {
-                        cars.push({
-                            name: carName,
-                            name_ar: carName,
-                            name_am: carName,
-                            price: values[1].replace(/"/g, '').trim(),
-                            seats: values[2].replace(/"/g, '').trim(),
-                            seats_ar: values[2].replace(/"/g, '').trim(),
-                            seats_am: values[2].replace(/"/g, '').trim(),
-                            transmission: values[3].replace(/"/g, '').trim(),
-                            transmission_ar: values[3].replace(/"/g, '').trim(),
-                            transmission_am: values[3].replace(/"/g, '').trim(),
-                            fuel: values[4].replace(/"/g, '').trim(),
-                            fuel_ar: values[4].replace(/"/g, '').trim(),
-                            fuel_am: values[4].replace(/"/g, '').trim(),
-                            image: carImages[carName] || "images/cars/placeholder.png"
-                        });
-                    }
-                }
-            }
-            
-            return cars.length > 0 ? cars : directCars;
-        } catch (error) {
-            console.log("Error loading from Google Sheet:", error);
-            return directCars;
-        }
-    }
-
-    async function renderCars() {
+    function renderCars() {
         const grid = document.getElementById('carsGrid');
-        grid.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i><p>${translations[currentLang].loading}</p></div>`;
+        if (!grid) return;
         
-        const cars = await loadCarsFromSheet();
-        
-        grid.innerHTML = cars.map(car => `
+        grid.innerHTML = allCars.map(car => `
             <div class="car-card">
                 <div class="car-image">
-                    <img src="${car.image}" alt="${car.name}" onerror="this.parentElement.innerHTML='<i class=\'fas fa-car\' style=\'font-size: 3rem; color: #DAA520;\'></i>'">
+                    <img src="${car.image}" alt="${car.name_en}" onerror="this.parentElement.innerHTML='<i class=\'fas fa-car\' style=\'font-size: 3rem; color: #DAA520;\'></i>'">
                 </div>
                 <div class="car-info">
-                    <h3>${currentLang === 'ar' ? car.name_ar : currentLang === 'am' ? car.name_am : car.name}</h3>
+                    <h3>${currentLang === 'ar' ? car.name_ar : currentLang === 'am' ? car.name_am : car.name_en}</h3>
                     <div class="car-details">
                         <p><i class="fas fa-users"></i> ${currentLang === 'ar' ? car.seats_ar : currentLang === 'am' ? car.seats_am : car.seats}</p>
                         <p><i class="fas fa-cogs"></i> ${currentLang === 'ar' ? car.transmission_ar : currentLang === 'am' ? car.transmission_am : car.transmission}</p>
