@@ -239,7 +239,7 @@
 </div>
 
 <div class="page-header">
-    <h1 id="pageTitle"><span>Explore Ethiopia</span></h1>
+    <h1 id="pageTitle">Explore <span>Ethiopia</span></h1>
     <p id="pageSubtitle">Discover the most breathtaking destinations across the Land of Origins</p>
 </div>
 
@@ -272,16 +272,28 @@
 </footer>
 
 <script>
-    // Destinations Data - All PNG images in images/destinations/ folder
+    // ============================================================
+    // ALL 18 DESTINATIONS WITH YOUR EXACT PNG FILENAMES
+    // ============================================================
     const destinations = [
-        { name: "Lalibela Rock Churches", name_ar: "كنائس لاليبيلا الصخرية", name_am: "ላሊበላ ዓለት ቤተክርስቲያን", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "11 medieval rock-hewn churches from the 12th century. UNESCO World Heritage site.", description_ar: "11 كنيسة منحوتة في الصخر من القرن الثاني عشر. موقع التراث العالمي لليونسكو.", description_am: "ከ12ኛው ክፍለ ዘመን ጀምሮ 11 በድንጋይ የተሰሩ ቤተክርስቲያናት። የዩኔስኮ ዓለም ቅርስ ቦታ።", image: "images/destinations/lalibela.png" },
-        { name: "Simien Mountains National Park", name_ar: "حديقة جبال سيمين الوطنية", name_am: "ስሜን ተራሮች ብሔራዊ ፓርክ", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Dramatic escarpments, deep valleys, Gelada baboons, Ethiopian wolves. UNESCO World Heritage.", description_ar: "منحدرات دراماتيكية، وديان عميقة، قردة الجيلادا، ذئاب إثيوبية. التراث العالمي لليونسكو.", description_am: "አስደናቂ ገደሎች፣ ጥልቅ ሸለቆዎች፣ ገላዳ ጦጣዎች፣ የኢትዮጵያ ተኩላዎች። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/simien.png" },
-        { name: "Axum Obelisks", name_ar: "مسلات أكسوم", name_am: "አክሱም ሐውልቶች", region: "Tigray", region_ar: "تيغراي", region_am: "ትግራይ", description: "Ancient obelisks, tombs, and Ark of the Covenant site. UNESCO World Heritage.", description_ar: "مسلات قديمة، مقابر، وموقع تابوت العهد. التراث العالمي لليونسكو.", description_am: "የጥንት ሐውልቶች፣ መቃብሮች እና የቃል ኪዳን ታቦት ቦታ። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/axum.png" },
-        { name: "Gondar Castle (Fasil Ghebbi)", name_ar: "قلعة غوندار (فاسيل غيبي)", name_am: "ጎንደር ቤተ መንግሥት (ፋሲል ግቢ)", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Royal enclosure with castles from 17th century. 'Camelot of Africa'. UNESCO site.", description_ar: "مجمع ملكي مع قلاع من القرن السابع عشر. 'كاميلوت أفريقيا'. موقع اليونسكو.", description_am: "ከ17ኛው ክፍለ ዘመን ጀምሮ ቤተ መንግሥት ያለው ንጉሣዊ ቅጥር። 'የአፍሪካ ካሜሎት'። የዩኔስኮ ቦታ።", image: "images/destinations/gondar.png" },
-        { name: "Danakil Depression", name_ar: "منخفض الدناكل", name_am: "ዳናኪል ዲፕሬሽን", region: "Afar", region_ar: "عفار", region_am: "አፋር", description: "One of the hottest places on Earth. Colorful sulfur springs, salt flats, Erta Ale volcano.", description_ar: "واحدة من أكثر الأماكن سخونة على وجه الأرض. ينابيع الكبريت الملونة، السهول الملحية، بركان إرتا ألي.", description_am: "በምድር ላይ በጣም ሞቃታማ ከሆኑ ቦታዎች አንዱ። ባለቀለም የድኝ ምንጮች፣ የጨው ሜዳዎች፣ ኤርታ አሌ እሳተ ገሞራ።", image: "images/destinations/danakil.png" },
-        { name: "Omo Valley Tribes", name_ar: "قبائل وادي أومو", name_am: "ኦሞ ሸለቆ ጎሳዎች", region: "South Ethiopia", region_ar: "جنوب إثيوبيا", region_am: "ደቡብ ኢትዮጵያ", description: "Home to Hamer, Mursi, Karo tribes with unique cultures and traditions.", description_ar: "موطن قبائل هامر ومورسي وكارو ذات الثقافات والتقاليد الفريدة.", description_am: "የሃመር፣ ሙርሲ እና ካሮ ጎሳዎች መኖሪያ ከልዩ ባህሎች እና ወጎች ጋር።", image: "images/destinations/omo-valley.png" },
+        { name: "Addis Ababa", name_ar: "أديس أبابا", name_am: "አዲስ አበባ", region: "Addis Ababa", region_ar: "أديس أبابا", region_am: "አዲስ አበባ", description: "Capital city of Ethiopia. Home to the African Union headquarters, museums, and vibrant culture.", description_ar: "عاصمة إثيوبيا. موطن مقر الاتحاد الأفريقي والمتاحف والثقافة النابضة بالحياة.", description_am: "የኢትዮጵያ ዋና ከተማ። የአፍሪካ ህብረት ዋና መሥሪያ ቤት፣ ሙዚየሞች እና ሕያው ባህል መኖሪያ።", image: "images/destinations/addis.png" },
+        { name: "Arba Minch", name_ar: "أربا مينتش", name_am: "አርባ ምንጭ", region: "SNNPR", region_ar: "الأمم الجنوبية", region_am: "ደቡብ ብሔር ብሔረሰቦች", description: "'Forty Springs' - gateway to Nechisar National Park and Dorze village.", description_ar: "'أربعون نبعًا' - بوابة متنزه نيتشيسار الوطني وقرية دورزي.", description_am: "'አርባ ምንጭ' - ወደ ነጭሳር ብሔራዊ ፓርክ እና ዶርዜ መንደር በር።", image: "images/destinations/arba-minch.png" },
+        { name: "Awash National Park", name_ar: "متنزه أواش الوطني", name_am: "አዋሽ ብሔራዊ ፓርክ", region: "Afar", region_ar: "عفار", region_am: "አፋር", description: "Wildlife, waterfalls, and volcanic landscapes. Home to over 450 bird species.", description_ar: "الحياة البرية والشلالات والمناظر الطبيعية البركانية. موطن لأكثر من 450 نوعًا من الطيور.", description_am: "የዱር እንስሳት፣ ፏፏቴዎች እና የእሳተ ገሞራ መልክዓ ምድሮች። ከ450 በላይ የአእዋፍ ዝርያዎች መኖሪያ።", image: "images/destinations/awash.png" },
+        { name: "Axum Obelisks", name_ar: "مسلات أكسوم", name_am: "አክሱም ሐውልቶች", region: "Tigray", region_ar: "تيغراي", region_am: "ትግራይ", description: "Ancient obelisks, tombs, and Ark of the Covenant site. UNESCO World Heritage.", description_ar: "مسلات قديمة، مقابر، وموقع تابوت العهد. التراث العالمي لليونسكو.", description_am: "የጥንት ሐውልቶች፣ መቃብሮች እና የቃል ኪዳን ታቦት ቦታ። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/Axum.png" },
+        { name: "Bahir Dar", name_ar: "بحر دار", name_am: "ባሕር ዳር", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Gateway to Lake Tana and Blue Nile Falls. Beautiful city on the lake shore.", description_ar: "بوابة بحيرة تانا وشلالات النيل الأزرق. مدينة جميلة على شاطئ البحيرة.", description_am: "ለታና ሐይቅ እና ለትልቁ አባይ ፏፏቴ መግቢያ። በሐይቁ ዳርቻ ላይ የምትገኝ ቆንጆ ከተማ።", image: "images/destinations/bahir-dar.png" },
+        { name: "Bale Mountains National Park", name_ar: "حديقة جبال بيل الوطنية", name_am: "ባሌ ተራሮች ብሔራዊ ፓርክ", region: "Oromia", region_ar: "أوروميا", region_am: "ኦሮሚያ", description: "High-altitude wilderness with Ethiopian wolves and Afro-alpine ecosystem.", description_ar: "برية عالية الارتفاع بها ذئاب إثيوبية ونظام بيئي أفرو-ألبي.", description_am: "የኢትዮጵያ ተኩላዎች እና የአፍሮ-አልፓይን ስነ-ምህዳር ያለው ከፍታ ያለው ምድረ በዳ።", image: "images/destinations/bale.png" },
+        { name: "Blue Nile Falls (Tis Issat)", name_ar: "شلالات النيل الأزرق (تيس إيسات)", name_am: "ትልቁ አባይ ፏፏቴ (ጥስ እሳት)", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Spectacular waterfall known as 'Smoking Water' near Lake Tana.", description_ar: "شلال مذهل يعرف باسم 'الماء المدخن' بالقرب من بحيرة تانا.", description_am: "ከታና ሐይቅ አቅራቢያ 'የሚያጨስ ውሃ' በመባል የሚታወቀው አስደናቂው ፏፏቴ።", image: "images/destinations/blue-nile.png" },
+        { name: "Danakil Depression", name_ar: "منخفض الدناكل", name_am: "ዳናኪል ዲፕሬሽን", region: "Afar", region_ar: "عفار", region_am: "አፋር", description: "One of the hottest places on Earth. Colorful sulfur springs, salt flats, Erta Ale volcano.", description_ar: "واحدة من أكثر الأماكن سخونة على وجه الأرض. ينابيع الكبريت الملونة، السهول الملحية، بركان إرتا ألي.", description_am: "በምድር ላይ በጣም ሞቃታማ ከሆኑ ቦታዎች አንዱ። ባለቀለም የድኝ ምንጮች፣ የጨው ሜዳዎች፣ ኤርታ አሌ እሳተ ገሞራ።", image: "images/destinations/Danakil.png" },
+        { name: "Debre Damo Monastery", name_ar: "دير ديبري دامو", name_am: "ደብረ ዳሞ ገዳም", region: "Tigray", region_ar: "تيغراي", region_am: "ትግራይ", description: "Ancient monastery accessible only by rope climb. Known for its collection of manuscripts.", description_ar: "دير قديم لا يمكن الوصول إليه إلا عن طريق تسلق الحبال. تشتهر بمجموعة مخطوطاتها.", description_am: "በገመድ መውጣት ብቻ የሚገኝ ጥንታዊ ገዳም። በብራና ጽሑፎች ስብስብ ይታወቃል።", image: "images/destinations/debre-damo.png" },
+        { name: "Gondar Castle (Fasil Ghebbi)", name_ar: "قلعة غوندار (فاسيل غيبي)", name_am: "ጎንደር ቤተ መንግሥት (ፋሲል ግቢ)", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Royal enclosure with castles from 17th century. 'Camelot of Africa'. UNESCO site.", description_ar: "مجمع ملكي مع قلاع من القرن السابع عشر. 'كاميلوت أفريقيا'. موقع اليونسكو.", description_am: "ከ17ኛው ክፍለ ዘመን ጀምሮ ቤተ መንግሥት ያለው ንጉሣዊ ቅጥር። 'የአፍሪካ ካሜሎት'። የዩኔስኮ ቦታ።", image: "images/destinations/Gondar.png" },
         { name: "Harar Jugol", name_ar: "هرر جوجول", name_am: "ሐረር ጁጎል", region: "Harari", region_ar: "هراري", region_am: "ሐረሪ", description: "Walled city, 4th holiest in Islam with 82 mosques, hyena feeding tradition.", description_ar: "مدينة مسورة، رابع أقدس مدينة في الإسلام وتضم 82 مسجدًا، تقليد إطعام الضباع.", description_am: "በቅጥር የተከበበች ከተማ፣ በእስልምና 4ኛዋ ቅድስት ከተማ 82 መስጊዶች አሏት፣ ጅቦችን የመመገብ ባህል።", image: "images/destinations/harar.png" },
-        { name: "Bale Mountains National Park", name_ar: "حديقة جبال بيل الوطنية", name_am: "ባሌ ተራሮች ብሔራዊ ፓርክ", region: "Oromia", region_ar: "أوروميا", region_am: "ኦሮሚያ", description: "High-altitude wilderness with Ethiopian wolves and Afro-alpine ecosystem.", description_ar: "برية عالية الارتفاع بها ذئاب إثيوبية ونظام بيئي أفرو-ألبي.", description_am: "የኢትዮጵያ ተኩላዎች እና የአፍሮ-አልፓይን ስነ-ምህዳር ያለው ከፍታ ያለው ምድረ በዳ።", image: "images/destinations/bale.png" }
+        { name: "Konso Cultural Landscape", name_ar: "المشهد الثقافي كونسو", name_am: "ኮንሶ ባህላዊ መልክዓ ምድር", region: "SNNPR", region_ar: "الأمم الجنوبية", region_am: "ደቡብ ብሔር ብሔረሰቦች", description: "Terrace farming and traditional villages with unique stone walls. UNESCO site.", description_ar: "الزراعة المدرجات والقرى التقليدية ذات الجدران الحجرية الفريدة. موقع اليونسكو.", description_am: "በደረጃ የተደረደረ እርሻ እና ልዩ የድንጋይ ግድግዳ ያላቸው ባህላዊ መንደሮች። የዩኔስኮ ቦታ።", image: "images/destinations/konso.png" },
+        { name: "Lake Tana Monasteries", name_ar: "أديرة بحيرة تانا", name_am: "ታና ሐይቅ ገዳማት", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Ancient island monasteries with priceless religious art and manuscripts.", description_ar: "أديرة جزيرة قديمة ذات فن ديني لا يقدر بثمن ومخطوطات.", description_am: "በዋጋ ሊተመን የማይችል ሃይማኖታዊ ጥበብ እና የብራና ጽሑፎች ያሉት ጥንታዊ የደሴት ገዳማት።", image: "images/destinations/lake-tana.png" },
+        { name: "Lalibela Rock Churches", name_ar: "كنائس لاليبيلا الصخرية", name_am: "ላሊበላ ዓለት ቤተክርስቲያን", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "11 medieval rock-hewn churches from the 12th century. UNESCO World Heritage site.", description_ar: "11 كنيسة منحوتة في الصخر من القرن الثاني عشر. موقع التراث العالمي لليونسكو.", description_am: "ከ12ኛው ክፍለ ዘመን ጀምሮ 11 በድንጋይ የተሰሩ ቤተክርስቲያናት። የዩኔስኮ ዓለም ቅርስ ቦታ።", image: "images/destinations/lalibela.png" },
+        { name: "Omo Valley Tribes", name_ar: "قبائل وادي أومو", name_am: "ኦሞ ሸለቆ ጎሳዎች", region: "South Ethiopia", region_ar: "جنوب إثيوبيا", region_am: "ደቡብ ኢትዮጵያ", description: "Home to Hamer, Mursi, Karo tribes with unique cultures and traditions.", description_ar: "موطن قبائل هامر ومورسي وكارو ذات الثقافات والتقاليد الفريدة.", description_am: "የሃመር፣ ሙርሲ እና ካሮ ጎሳዎች መኖሪያ ከልዩ ባህሎች እና ወጎች ጋር።", image: "images/destinations/omo-valley.png" },
+        { name: "Simien Mountains National Park", name_ar: "حديقة جبال سيمين الوطنية", name_am: "ስሜን ተራሮች ብሔራዊ ፓርክ", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Dramatic escarpments, deep valleys, Gelada baboons, Ethiopian wolves. UNESCO World Heritage.", description_ar: "منحدرات دراماتيكية، وديان عميقة، قردة الجيلادا، ذئاب إثيوبية. التراث العالمي لليونسكو.", description_am: "አስደናቂ ገደሎች፣ ጥልቅ ሸለቆዎች፣ ገላዳ ጦጣዎች፣ የኢትዮጵያ ተኩላዎች። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/Simien.png" },
+        { name: "Sof Omar Caves", name_ar: "كهوف صوف عمر", name_am: "ሶፍ ኦማር ዋሻዎች", region: "Oromia", region_ar: "أوروميا", region_am: "ኦሮሚያ", description: "One of Africa's largest cave systems with underground rivers and stunning formations.", description_ar: "واحدة من أكبر أنظمة الكهوف في أفريقيا ذات الأنهار الجوفية والتشكيلات المذهلة.", description_am: "የከርሰ ምድር ወንዞች እና አስደናቂ ቅርጾች ያሉት ከአፍሪካ ትላልቅ ዋሻ ስርዓቶች አንዱ።", image: "images/destinations/sof-omar.png" },
+        { name: "Tiya Stelae", name_ar: "مسلات تيا", name_am: "ቲያ ሐውልቶች", region: "SNNPR", region_ar: "الأمم الجنوبية", region_am: "ደቡብ ብሔር ብሔረሰቦች", description: "Ancient carved monoliths with mysterious engravings. UNESCO World Heritage site.", description_ar: "أحجار ضخمة منحوتة قديمة بنقوش غامضة. موقع التراث العالمي لليونسكو.", description_am: "ምስጢራዊ ቅርጻ ቅርጾች ያሉት ጥንታዊ የተቀረጹ ሐውልቶች። የዩኔስኮ ዓለም ቅርስ ቦታ።", image: "images/destinations/tiya.png" }
     ];
 
     let currentLang = 'en';
@@ -340,22 +352,15 @@
 
     function updateLanguage(lang) {
         currentLang = lang;
-        
-        // Update page header
         document.getElementById('pageTitle').innerHTML = translations[lang].pageTitle;
         document.getElementById('pageSubtitle').innerHTML = translations[lang].pageSubtitle;
-        
-        // Update footer
         document.getElementById('footerText').innerHTML = translations[lang].footerText;
         document.getElementById('locationText').innerHTML = translations[lang].locationText;
         document.getElementById('rightsText').innerHTML = translations[lang].rightsText;
-        
-        // Update custom note
         document.getElementById('customTitle').innerHTML = translations[lang].customTitle;
         document.getElementById('customText').innerHTML = translations[lang].customText;
         document.getElementById('customBtn').innerHTML = translations[lang].customBtn;
         
-        // Update banner text
         document.querySelectorAll('#servicesBanner span span').forEach(span => {
             const enText = span.getAttribute('data-en');
             const arText = span.getAttribute('data-ar');
@@ -365,7 +370,6 @@
             else if (enText) span.innerHTML = enText;
         });
         
-        // Update nav links
         document.querySelectorAll('.nav-links a').forEach(link => {
             const arText = link.getAttribute('data-ar');
             const amText = link.getAttribute('data-am');
@@ -375,11 +379,9 @@
             else if (enText) link.textContent = enText;
         });
         
-        // RTL for Arabic
         if (lang === 'ar') document.body.setAttribute('dir', 'rtl');
         else document.body.setAttribute('dir', 'ltr');
         
-        // Re-render destinations
         renderDestinations();
     }
 
