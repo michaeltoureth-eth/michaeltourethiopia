@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Destinations | Michael Tour Ethiopia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        [dir="rtl"] { direction: rtl; text-align: right; }
+        [dir="ltr"] { direction: ltr; text-align: left; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #DAA520; border-radius: 3px; }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 45px; width: auto; }
+        .logo h1 { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #DAA520); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #DAA520; transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #DAA520; }
+        .book-btn { background: #DAA520; color: black !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .book-btn::after { display: none; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: #DAA520; color: black; }
+        .lang-btn:hover:not(.active) { background: rgba(218, 165, 32, 0.3); }
+
+        .social-wrapper { display: flex; justify-content: center; margin: 0.5rem 1rem; flex-wrap: wrap; gap: 1rem; }
+        .social-card {
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            gap: 15px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50px;
+        }
+        .socialContainer {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containerPhone:hover { background-color: #34B7F1; }
+        .containerTikTok:hover { background-color: #25f4ee; }
+        .containerFacebook:hover { background-color: #1877f2; }
+        .containerWhatsApp:hover { background-color: #25D366; }
+        .socialContainer:active { transform: scale(0.9); }
+        .socialSvg { width: 20px; height: 20px; }
+        .socialSvg path { fill: rgb(255, 255, 255); }
+        .socialContainer:hover .socialSvg { animation: slide-in-top 0.3s both; }
+        @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        .page-header { text-align: center; padding: 2rem 1rem; background: rgba(0, 0, 0, 0.5); margin: 1rem; border-radius: 24px; backdrop-filter: blur(5px); }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .page-header h1 span { color: #DAA520; }
+        .page-header p { font-size: 0.9rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+
+        .services-banner {
+            background: rgba(218, 165, 32, 0.1);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .services-banner span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0.3rem 1rem;
+            font-size: 0.8rem;
+        }
+        .services-banner i { color: #DAA520; }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+        .destination-card {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .destination-card:hover { transform: translateY(-8px); border-color: #DAA520; }
+        .destination-image {
+            width: 100%;
+            height: 200px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .destination-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .destination-card:hover .destination-image img { transform: scale(1.05); }
+        .destination-info { padding: 1.2rem; }
+        .destination-info h3 { font-size: 1.1rem; color: #DAA520; margin-bottom: 0.3rem; }
+        .destination-info p { font-size: 0.8rem; color: #ccc; line-height: 1.5; margin-bottom: 0.8rem; }
+        .region-tag {
+            display: inline-block;
+            background: rgba(218, 165, 32, 0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .btn-sm {
+            display: inline-block;
+            background: #DAA520;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-sm:hover { background: #FFD700; transform: translateY(-2px); }
+
+        .custom-note {
+            background: rgba(218, 165, 32, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .custom-note i { font-size: 2rem; color: #DAA520; margin-bottom: 1rem; }
+
+        .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
+        .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .page-header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .destinations-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .services-banner span { display: inline-block; margin: 0.3rem 0.5rem; }
+            .social-card { padding: 8px 15px; gap: 10px; }
+            .socialContainer { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <h1>MICHAEL TOUR <span>ETHIOPIA</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-ar="الرئيسية" data-am="ዋና ገጽ">Home</a></li>
+            <li><a href="about.html" data-en="About" data-ar="عن" data-am="ስለ">About</a></li>
+            <li><a href="gallery.html" data-en="Gallery" data-ar="معرض" data-am="ማዕከለ ስዕላት">Gallery</a></li>
+            <li><a href="tours.html" data-en="Destinations" data-ar="وجهات" data-am="መዳረሻዎች">Destinations</a></li>
+            <li><a href="cars.html" data-en="Cars" data-ar="سيارات" data-am="መኪናዎች">Cars</a></li>
+            <li><a href="booking.html" class="book-btn" data-en="Book" data-ar="احجز" data-am="አሁን ይመዝገቡ">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="social-wrapper">
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="am">አማርኛ</button>
+    </div>
+    <div class="social-card">
+        <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
+        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1 id="pageTitle"><span>Explore Ethiopia</span></h1>
+    <p id="pageSubtitle">Discover the most breathtaking destinations across the Land of Origins</p>
+</div>
+
+<div class="container">
+    <div class="services-banner" id="servicesBanner">
+        <span><i class="fas fa-gem"></i> <span data-en="Premium Rentals" data-ar="تأجير فاخر" data-am="ላቀ ኪራይ">Premium Rentals</span></span>
+        <span><i class="fas fa-plane-departure"></i> <span data-en="Travel Tours" data-ar="جولات سياحية" data-am="የጉዞ ጉብኝቶች">Travel Tours</span></span>
+        <span><i class="fas fa-heart"></i> <span data-en="Weddings" data-ar="حفلات الزفاف" data-am="ሰርግ">Weddings</span></span>
+        <span><i class="fas fa-building"></i> <span data-en="Corporate" data-ar="الشركات" data-am="የኮርፖሬት">Corporate</span></span>
+        <span><i class="fas fa-campground"></i> <span data-en="Camping Expeditions" data-ar="رحلات التخييم" data-am="የካምፕ ጉዞዎች">Camping Expeditions</span></span>
+        <span><i class="fas fa-hiking"></i> <span data-en="Trekking" data-ar="المشي لمسافات طويلة" data-am="ተራራ መውጣት">Trekking</span></span>
+    </div>
+
+    <div class="destinations-grid" id="destinationsGrid"></div>
+
+    <div class="custom-note" id="customNote">
+        <i class="fas fa-envelope"></i>
+        <h3 id="customTitle">Want a custom trip?</h3>
+        <p id="customText">Email us with your preferred destinations, duration, and group size. We'll create a personalized itinerary just for you.</p>
+        <p style="margin-top: 1rem;">📞 Call: <strong style="color: #DAA520;">0909505009</strong> | 📧 Email: <strong style="color: #DAA520;">info@michaeltourethiopia.com</strong></p>
+        <a href="booking.html" class="btn-sm" id="customBtn" style="margin-top: 1rem; display: inline-block;">Request Custom Quote →</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>Michael Tour Ethiopia</strong> | <span id="footerText">Premium Car Rent & Tour</span></p>
+    <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
+    <p>📍 <span id="locationText">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2025 Michael Tour Ethiopia | <span id="rightsText">All rights reserved</span></p>
+</footer>
+
+<script>
+    // Destinations Data - All PNG images in images/destinations/ folder
+    const destinations = [
+        { name: "Lalibela Rock Churches", name_ar: "كنائس لاليبيلا الصخرية", name_am: "ላሊበላ ዓለት ቤተክርስቲያን", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "11 medieval rock-hewn churches from the 12th century. UNESCO World Heritage site.", description_ar: "11 كنيسة منحوتة في الصخر من القرن الثاني عشر. موقع التراث العالمي لليونسكو.", description_am: "ከ12ኛው ክፍለ ዘመን ጀምሮ 11 በድንጋይ የተሰሩ ቤተክርስቲያናት። የዩኔስኮ ዓለም ቅርስ ቦታ።", image: "images/destinations/lalibela.png" },
+        { name: "Simien Mountains National Park", name_ar: "حديقة جبال سيمين الوطنية", name_am: "ስሜን ተራሮች ብሔራዊ ፓርክ", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Dramatic escarpments, deep valleys, Gelada baboons, Ethiopian wolves. UNESCO World Heritage.", description_ar: "منحدرات دراماتيكية، وديان عميقة، قردة الجيلادا، ذئاب إثيوبية. التراث العالمي لليونسكو.", description_am: "አስደናቂ ገደሎች፣ ጥልቅ ሸለቆዎች፣ ገላዳ ጦጣዎች፣ የኢትዮጵያ ተኩላዎች። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/simien.png" },
+        { name: "Axum Obelisks", name_ar: "مسلات أكسوم", name_am: "አክሱም ሐውልቶች", region: "Tigray", region_ar: "تيغراي", region_am: "ትግራይ", description: "Ancient obelisks, tombs, and Ark of the Covenant site. UNESCO World Heritage.", description_ar: "مسلات قديمة، مقابر، وموقع تابوت العهد. التراث العالمي لليونسكو.", description_am: "የጥንት ሐውልቶች፣ መቃብሮች እና የቃል ኪዳን ታቦት ቦታ። የዩኔስኮ ዓለም ቅርስ።", image: "images/destinations/axum.png" },
+        { name: "Gondar Castle (Fasil Ghebbi)", name_ar: "قلعة غوندار (فاسيل غيبي)", name_am: "ጎንደር ቤተ መንግሥት (ፋሲል ግቢ)", region: "Amhara", region_ar: "أمهرة", region_am: "አማራ", description: "Royal enclosure with castles from 17th century. 'Camelot of Africa'. UNESCO site.", description_ar: "مجمع ملكي مع قلاع من القرن السابع عشر. 'كاميلوت أفريقيا'. موقع اليونسكو.", description_am: "ከ17ኛው ክፍለ ዘመን ጀምሮ ቤተ መንግሥት ያለው ንጉሣዊ ቅጥር። 'የአፍሪካ ካሜሎት'። የዩኔስኮ ቦታ።", image: "images/destinations/gondar.png" },
+        { name: "Danakil Depression", name_ar: "منخفض الدناكل", name_am: "ዳናኪል ዲፕሬሽን", region: "Afar", region_ar: "عفار", region_am: "አፋር", description: "One of the hottest places on Earth. Colorful sulfur springs, salt flats, Erta Ale volcano.", description_ar: "واحدة من أكثر الأماكن سخونة على وجه الأرض. ينابيع الكبريت الملونة، السهول الملحية، بركان إرتا ألي.", description_am: "በምድር ላይ በጣም ሞቃታማ ከሆኑ ቦታዎች አንዱ። ባለቀለም የድኝ ምንጮች፣ የጨው ሜዳዎች፣ ኤርታ አሌ እሳተ ገሞራ።", image: "images/destinations/danakil.png" },
+        { name: "Omo Valley Tribes", name_ar: "قبائل وادي أومو", name_am: "ኦሞ ሸለቆ ጎሳዎች", region: "South Ethiopia", region_ar: "جنوب إثيوبيا", region_am: "ደቡብ ኢትዮጵያ", description: "Home to Hamer, Mursi, Karo tribes with unique cultures and traditions.", description_ar: "موطن قبائل هامر ومورسي وكارو ذات الثقافات والتقاليد الفريدة.", description_am: "የሃመር፣ ሙርሲ እና ካሮ ጎሳዎች መኖሪያ ከልዩ ባህሎች እና ወጎች ጋር።", image: "images/destinations/omo-valley.png" },
+        { name: "Harar Jugol", name_ar: "هرر جوجول", name_am: "ሐረር ጁጎል", region: "Harari", region_ar: "هراري", region_am: "ሐረሪ", description: "Walled city, 4th holiest in Islam with 82 mosques, hyena feeding tradition.", description_ar: "مدينة مسورة، رابع أقدس مدينة في الإسلام وتضم 82 مسجدًا، تقليد إطعام الضباع.", description_am: "በቅጥር የተከበበች ከተማ፣ በእስልምና 4ኛዋ ቅድስት ከተማ 82 መስጊዶች አሏት፣ ጅቦችን የመመገብ ባህል።", image: "images/destinations/harar.png" },
+        { name: "Bale Mountains National Park", name_ar: "حديقة جبال بيل الوطنية", name_am: "ባሌ ተራሮች ብሔራዊ ፓርክ", region: "Oromia", region_ar: "أوروميا", region_am: "ኦሮሚያ", description: "High-altitude wilderness with Ethiopian wolves and Afro-alpine ecosystem.", description_ar: "برية عالية الارتفاع بها ذئاب إثيوبية ونظام بيئي أفرو-ألبي.", description_am: "የኢትዮጵያ ተኩላዎች እና የአፍሮ-አልፓይን ስነ-ምህዳር ያለው ከፍታ ያለው ምድረ በዳ።", image: "images/destinations/bale.png" }
+    ];
+
+    let currentLang = 'en';
+
+    const translations = {
+        en: {
+            pageTitle: 'Explore <span>Ethiopia</span>',
+            pageSubtitle: 'Discover the most breathtaking destinations across the Land of Origins',
+            footerText: 'Premium Car Rent & Tour',
+            locationText: 'Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba',
+            rightsText: 'All rights reserved',
+            customTitle: 'Want a custom trip?',
+            customText: 'Email us with your preferred destinations, duration, and group size. We\'ll create a personalized itinerary just for you.',
+            customBtn: 'Request Custom Quote →'
+        },
+        ar: {
+            pageTitle: 'استكشف <span>إثيوبيا</span>',
+            pageSubtitle: 'اكتشف الوجهات الأكثر روعة في جميع أنحاء أرض الأصول',
+            footerText: 'تأجير سيارات فاخر وجولات',
+            locationText: 'منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا',
+            rightsText: 'جميع الحقوق محفوظة',
+            customTitle: 'هل تريد رحلة مخصصة؟',
+            customText: 'راسلنا عبر البريد الإلكتروني مع وجهاتك المفضلة والمدة وحجم المجموعة. سنقوم بإنشاء برنامج رحلة مخصص لك فقط.',
+            customBtn: 'طلب عرض أسعار مخصص ←'
+        },
+        am: {
+            pageTitle: 'ኢትዮጵያን <span>ያስሱ</span>',
+            pageSubtitle: 'በመነሻ ምድር ውስጥ በጣም አስደናቂ መዳረሻዎችን ያግኙ',
+            footerText: 'ፕሪሚየም የመኪና ኪራይ እና ጉብኝት',
+            locationText: 'ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ',
+            rightsText: 'መብቱ በህግ የተጠበቀ ነው',
+            customTitle: 'ብጁ ጉዞ ይፈልጋሉ?',
+            customText: 'ተመራጭ መዳረሻዎችዎን፣ የሚቆዩበትን ጊዜ እና የቡድን መጠን በኢሜይል ይላኩልን። ለእርስዎ ብቻ የተዘጋጀ የጉዞ መርሃ ግብር እንሰራለን።',
+            customBtn: 'ብጁ ዋጋ ይጠይቁ →'
+        }
+    };
+
+    function renderDestinations() {
+        const grid = document.getElementById('destinationsGrid');
+        if (!grid) return;
+        
+        grid.innerHTML = destinations.map(dest => `
+            <div class="destination-card">
+                <div class="destination-image">
+                    <img src="${dest.image}" alt="${dest.name}" onerror="this.parentElement.innerHTML='<i class=\'fas fa-mountain\' style=\'font-size: 2rem; color: #DAA520;\'></i>'">
+                </div>
+                <div class="destination-info">
+                    <h3>${currentLang === 'ar' ? dest.name_ar : currentLang === 'am' ? dest.name_am : dest.name}</h3>
+                    <span class="region-tag"><i class="fas fa-map-marker-alt"></i> ${currentLang === 'ar' ? dest.region_ar : currentLang === 'am' ? dest.region_am : dest.region}</span>
+                    <p style="margin-top: 0.8rem;">${currentLang === 'ar' ? dest.description_ar : currentLang === 'am' ? dest.description_am : dest.description}</p>
+                    <a href="booking.html" class="btn-sm">${currentLang === 'ar' ? 'طلب رحلة →' : currentLang === 'am' ? 'ጉዞ ጠይቅ →' : 'Request Trip →'}</a>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        
+        // Update page header
+        document.getElementById('pageTitle').innerHTML = translations[lang].pageTitle;
+        document.getElementById('pageSubtitle').innerHTML = translations[lang].pageSubtitle;
+        
+        // Update footer
+        document.getElementById('footerText').innerHTML = translations[lang].footerText;
+        document.getElementById('locationText').innerHTML = translations[lang].locationText;
+        document.getElementById('rightsText').innerHTML = translations[lang].rightsText;
+        
+        // Update custom note
+        document.getElementById('customTitle').innerHTML = translations[lang].customTitle;
+        document.getElementById('customText').innerHTML = translations[lang].customText;
+        document.getElementById('customBtn').innerHTML = translations[lang].customBtn;
+        
+        // Update banner text
+        document.querySelectorAll('#servicesBanner span span').forEach(span => {
+            const enText = span.getAttribute('data-en');
+            const arText = span.getAttribute('data-ar');
+            const amText = span.getAttribute('data-am');
+            if (lang === 'ar' && arText) span.innerHTML = arText;
+            else if (lang === 'am' && amText) span.innerHTML = amText;
+            else if (enText) span.innerHTML = enText;
+        });
+        
+        // Update nav links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const arText = link.getAttribute('data-ar');
+            const amText = link.getAttribute('data-am');
+            const enText = link.getAttribute('data-en');
+            if (lang === 'ar' && arText) link.textContent = arText;
+            else if (lang === 'am' && amText) link.textContent = amText;
+            else if (enText) link.textContent = enText;
+        });
+        
+        // RTL for Arabic
+        if (lang === 'ar') document.body.setAttribute('dir', 'rtl');
+        else document.body.setAttribute('dir', 'ltr');
+        
+        // Re-render destinations
+        renderDestinations();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    renderDestinations();
+</script>
+</body>
+</html>

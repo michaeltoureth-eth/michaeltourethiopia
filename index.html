@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Michael Tour Ethiopia | Premium Car Rent & Tour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #DAA520; border-radius: 3px; }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 45px; width: auto; }
+        .logo h1 { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #DAA520); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #DAA520; transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #DAA520; }
+        .book-btn { background: #DAA520; color: black !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .book-btn::after { display: none; }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: #DAA520; color: black; }
+        .lang-btn:hover:not(.active) { background: rgba(218, 165, 32, 0.3); }
+
+        /* Social Media Card */
+        .social-wrapper { display: flex; justify-content: center; margin: 0.5rem 1rem; flex-wrap: wrap; gap: 1rem; }
+        .social-card {
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            gap: 15px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50px;
+        }
+        .socialContainer {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containerPhone:hover { background-color: #34B7F1; }
+        .containerTikTok:hover { background-color: #25f4ee; }
+        .containerFacebook:hover { background-color: #1877f2; }
+        .containerWhatsApp:hover { background-color: #25D366; }
+        .socialContainer:active { transform: scale(0.9); }
+        .socialSvg { width: 20px; height: 20px; }
+        .socialSvg path { fill: rgb(255, 255, 255); }
+        .socialContainer:hover .socialSvg { animation: slide-in-top 0.3s both; }
+        @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 1rem;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        .hero-background img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%); z-index: -1; }
+        .hero-content { max-width: 900px; padding: 3rem 2rem; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 { font-size: 3.2rem; margin-bottom: 1rem; font-weight: 800; }
+        .hero h1 span { color: #DAA520; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+
+        .features { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: -40px; position: relative; z-index: 10; padding: 0 2rem; }
+        .feature-card { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); padding: 1rem 1.5rem; border-radius: 60px; text-align: center; border: 1px solid rgba(218, 165, 32, 0.3); transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); border-color: #DAA520; background: rgba(218, 165, 32, 0.15); }
+        .feature-card i { font-size: 1.3rem; color: #DAA520; margin-right: 8px; }
+        .feature-card span { font-size: 0.85rem; font-weight: 500; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .section-title { font-size: 2rem; text-align: center; margin-bottom: 1.5rem; font-weight: 700; position: relative; }
+        .section-title:after { content: ''; display: block; width: 60px; height: 4px; background: #DAA520; margin: 0.6rem auto 0; border-radius: 2px; }
+        .section-subtitle { text-align: center; color: #ccc; margin-bottom: 2rem; font-size: 0.9rem; }
+
+        .about-card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); border-radius: 28px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(218, 165, 32, 0.2); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .service-item { text-align: center; padding: 1rem; background: rgba(0, 0, 0, 0.4); border-radius: 16px; transition: 0.3s; }
+        .service-item:hover { background: rgba(218, 165, 32, 0.1); transform: translateY(-3px); }
+        .service-item i { font-size: 1.5rem; color: #DAA520; margin-bottom: 0.3rem; }
+        .service-item h4 { font-size: 0.85rem; }
+        .service-item p { font-size: 0.65rem; color: #aaa; }
+
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 700px; margin: 1.5rem auto; }
+        .process-step { text-align: center; padding: 1rem; background: rgba(0, 0, 0, 0.4); border-radius: 16px; }
+        .step-number { width: 36px; height: 36px; background: #DAA520; color: black; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: bold; margin: 0 auto 0.6rem; border-radius: 10px; }
+
+        .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 650px; margin: 1.5rem auto; }
+        .location-card { text-align: center; padding: 1rem; background: rgba(0, 0, 0, 0.4); border-radius: 16px; transition: 0.3s; }
+        .location-card:hover { background: rgba(218, 165, 32, 0.1); }
+        .location-card i { font-size: 1.5rem; color: #DAA520; margin-bottom: 0.3rem; }
+        .info-box { background: rgba(218, 165, 32, 0.08); padding: 1rem; border-radius: 16px; text-align: center; border-left: 3px solid #DAA520; margin: 1.5rem 0; }
+
+        .cars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .car-card { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); border-radius: 20px; overflow: hidden; transition: 0.3s; border: 1px solid rgba(218, 165, 32, 0.2); }
+        .car-card:hover { transform: translateY(-5px); border-color: #DAA520; }
+        .car-image { width: 100%; height: 180px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .car-image img { width: 100%; height: 100%; object-fit: cover; }
+        .car-info { padding: 1rem; }
+        .car-info h3 { font-size: 1rem; color: #DAA520; }
+
+        .btn-gold, .btn-outline { display: inline-block; padding: 0.6rem 1.5rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; border-radius: 40px; transition: 0.3s; cursor: pointer; text-align: center; }
+        .btn-gold { background: #DAA520; color: black; border: none; }
+        .btn-gold:hover { background: #FFD700; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: #DAA520; border: 1px solid #DAA520; }
+        .btn-outline:hover { background: #DAA520; color: black; }
+
+        .cta-section { background: rgba(218, 165, 32, 0.08); border-radius: 24px; padding: 2rem; text-align: center; margin: 2rem 0; border: 1px solid rgba(218, 165, 32, 0.2); }
+        .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
+        .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .hero { margin: 0.5rem; border-radius: 20px; min-height: 60vh; }
+            .hero h1 { font-size: 1.8rem; }
+            .features { margin-top: -20px; gap: 0.8rem; }
+            .feature-card { padding: 0.5rem 1rem; }
+            .process-grid, .locations-grid { grid-template-columns: 1fr; }
+            .cars-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .social-card { padding: 8px 15px; gap: 10px; }
+            .socialContainer { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <h1>MICHAEL TOUR <span>ETHIOPIA</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-ar="الرئيسية" data-am="ዋና ገጽ">Home</a></li>
+            <li><a href="about.html" data-en="About" data-ar="عن" data-am="ስለ">About</a></li>
+            <li><a href="gallery.html" data-en="Gallery" data-ar="معرض" data-am="ማዕከለ ስዕላት">Gallery</a></li>
+            <li><a href="tours.html" data-en="Destinations" data-ar="وجهات" data-am="መዳረሻዎች">Destinations</a></li>
+            <li><a href="cars.html" data-en="Cars" data-ar="سيارات" data-am="መኪናዎች">Cars</a></li>
+            <li><a href="booking.html" class="book-btn" data-en="Book" data-ar="احجز" data-am="አሁን ይመዝገቡ">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Language Switcher & Social Media -->
+<div class="social-wrapper">
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="am">አማርኛ</button>
+    </div>
+    <div class="social-card">
+        <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
+        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-background"><img src="images/hero-bg.jpg" alt="Ethiopia Hero" onerror="this.src='https://i.ibb.co/8LPWH3D7/image.jpg'"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 data-en="Explore <span>Ethiopia</span><br>with Michael Tour" data-ar="استكشف <span>إثيوبيا</span><br>مع مايكل تور" data-am="ኢትዮጵያን <span>ያስሱ</span><br>ከማይክል ቱር ጋር">Explore <span>Ethiopia</span><br>with Michael Tour</h1>
+        <p data-en="Premium car rentals, guided tours, and unforgettable experiences across the Land of Origins" data-ar="تأجير سيارات فاخرة، جولات إرشادية، وتجارب لا تُنسى في جميع أنحاء أرض الأصول" data-am="የላቀ የመኪና ኪራይ፣ የሚመራ ጉብኝቶች እና የማይረሱ ልምዶች በመነሻ ምድር ሁሉ">Premium car rentals, guided tours, and unforgettable experiences across the Land of Origins</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="booking.html" class="btn-gold" data-en="Start Journey →" data-ar="ابدأ الرحلة ←" data-am="ጉዞ ጀምር →">Start Journey →</a>
+            <a href="tours.html" class="btn-outline" data-en="Explore Destinations" data-ar="استكشف الوجهات" data-am="መዳረሻዎችን ያስሱ">Explore Destinations</a>
+        </div>
+    </div>
+</section>
+
+<!-- Floating Features -->
+<div class="features">
+    <div class="feature-card"><i class="fas fa-gem"></i><span data-en="Premium Rentals" data-ar="تأجير فاخر" data-am="ላቀ ኪራይ">Premium Rentals</span></div>
+    <div class="feature-card"><i class="fas fa-plane-departure"></i><span data-en="Travel Tours" data-ar="جولات سياحية" data-am="የጉዞ ጉብኝቶች">Travel Tours</span></div>
+    <div class="feature-card"><i class="fas fa-heart"></i><span data-en="Weddings" data-ar="حفلات الزفاف" data-am="ሰርግ">Weddings</span></div>
+    <div class="feature-card"><i class="fas fa-building"></i><span data-en="Corporate" data-ar="الشركات" data-am="የኮርፖሬት">Corporate</span></div>
+    <div class="feature-card"><i class="fas fa-campground"></i><span data-en="Camping" data-ar="تخييم" data-am="ካምፕ">Camping</span></div>
+</div>
+
+<div class="container">
+    <div class="about-card">
+        <h2 class="section-title" data-en="About Michael Tour" data-ar="عن مايكل تور" data-am="ስለ ማይክል ቱር">About Michael Tour</h2>
+        <div class="services-grid">
+            <div class="service-item"><i class="fas fa-gem"></i><h4 data-en="Premium Rentals" data-ar="تأجير فاخر" data-am="ላቀ ኪራይ">Premium Rentals</h4><p data-en="For every journey" data-ar="لكل رحلة" data-am="ለእያንዳንዱ ጉዞ">For every journey</p></div>
+            <div class="service-item"><i class="fas fa-plane-departure"></i><h4 data-en="Travel" data-ar="السفر" data-am="ጉዞ">Travel</h4><p data-en="Domestic tours" data-ar="جولات محلية" data-am="የሀገር ውስጥ ጉብኝቶች">Domestic tours</p></div>
+            <div class="service-item"><i class="fas fa-heart"></i><h4 data-en="Weddings" data-ar="حفلات الزفاف" data-am="ሰርግ">Weddings</h4><p data-en="Special events" data-ar="مناسبات خاصة" data-am="ልዩ ዝግጅቶች">Special events</p></div>
+            <div class="service-item"><i class="fas fa-building"></i><h4 data-en="Corporate" data-ar="الشركات" data-am="የኮርፖሬት">Corporate</h4><p data-en="Business travel" data-ar="السفر للأعمال" data-am="የንግድ ጉዞ">Business travel</p></div>
+            <div class="service-item"><i class="fas fa-users"></i><h4 data-en="Events" data-ar="الفعاليات" data-am="ዝግጅቶች">Events</h4><p data-en="Group travel" data-ar="السفر الجماعي" data-am="የቡድን ጉዞ">Group travel</p></div>
+            <div class="service-item"><i class="fas fa-campground"></i><h4 data-en="Camping" data-ar="تخييم" data-am="ካምፕ">Camping</h4><p data-en="Outdoor adventures" data-ar="مغامرات في الهواء الطلق" data-am="የውጪ ማስደሰቻ">Outdoor adventures</p></div>
+        </div>
+        
+        <h3 style="text-align: center; margin: 1rem 0; font-size: 1rem;" data-en="Our Rental Process" data-ar="عملية التأجير لدينا" data-am="የኪራይ ሂደታችን">Our Rental Process</h3>
+        <div class="process-grid">
+            <div class="process-step"><div class="step-number">1</div><h4 data-en="Select Car" data-ar="اختر السيارة" data-am="መኪና ምረጥ">Select Car</h4><p data-en="Choose your vehicle" data-ar="اختر سيارتك" data-am="መኪናህን ምረጥ">Choose your vehicle</p></div>
+            <div class="process-step"><div class="step-number">2</div><h4 data-en="Verify ID" data-ar="تحقق من الهوية" data-am="መታወቂያ አረጋግጥ">Verify ID</h4><p data-en="Provide identification" data-ar="قدم هويتك" data-am="መታወቂያ አቅርብ">Provide identification</p></div>
+            <div class="process-step"><div class="step-number">3</div><h4 data-en="Drive" data-ar="قم بالقيادة" data-am="ንዳ">Drive</h4><p data-en="Hit the road" data-ar="انطلق على الطريق" data-am="መንገድ ተቆጣጠር">Hit the road</p></div>
+        </div>
+        
+        <h3 style="text-align: center; margin: 1rem 0; font-size: 1rem;" data-en="Our Locations" data-ar="مواقعنا" data-am="ቦታዎቻችን">Our Locations</h3>
+        <div class="locations-grid">
+            <div class="location-card"><i class="fas fa-city"></i><h4>Adama</h4><p data-en="Main Office" data-ar="المكتب الرئيسي" data-am="ዋና ቢሮ">Main Office</p></div>
+            <div class="location-card"><i class="fas fa-building"></i><h4>Addis Ababa</h4><p data-en="Capital Branch" data-ar="فرع العاصمة" data-am="ዋና ከተማ ቅርንጫፍ">Capital Branch</p></div>
+            <div class="location-card"><i class="fas fa-tree"></i><h4>Bale Roba</h4><p data-en="Bale Region" data-ar="منطقة بالي" data-am="ባሌ ክልል">Bale Region</p></div>
+        </div>
+        
+        <div class="info-box">
+            <p><strong data-en="Primary Service Area:" data-ar="منطقة الخدمة الرئيسية:" data-am="ዋና አገልግሎት አካባቢ:">Primary Service Area:</strong> <span data-en="Oromia, Ethiopia" data-ar="أوروميا، إثيوبيا" data-am="ኦሮሚያ፣ ኢትዮጵያ">Oromia, Ethiopia</span></p>
+            <p style="margin-top: 0.3rem;" data-en="All vehicles subject to availability. Full terms & conditions at time of booking." data-ar="جميع المركبات حسب التوفر. الشروط والأحكام الكاملة في وقت الحجز." data-am="ሁሉም ተሽከርካሪዎች እንደአቅርቦት ናቸው። ሙሉ ውሎች እና ቅድመ ሁኔታዎች በቀጠሮ ጊዜ።">All vehicles subject to availability. Full terms & conditions at time of booking.</p>
+        </div>
+    </div>
+    
+    <h2 class="section-title" data-en="Our Premium Fleet" data-ar="أسطولنا المتميز" data-am="የእኛ ፕሪሚየም መርከቦች">Our Premium Fleet</h2>
+    <p class="section-subtitle" data-en="Reliable, powerful, and comfortable vehicles for Ethiopian terrain" data-ar="مركبات موثوقة وقوية ومريحة للتضاريس الإثيوبية" data-am="ለኢትዮጵያ መሬት አስተማማኝ፣ ኃይለኛ እና ምቹ ተሽከርካሪዎች">Reliable, powerful, and comfortable vehicles for Ethiopian terrain</p>
+    <div class="cars-grid" id="featuredCars"></div>
+    <div style="text-align: center; margin: 1rem 0;">
+        <a href="cars.html" class="btn-outline" data-en="View All Vehicles →" data-ar="عرض جميع المركبات ←" data-am="ሁሉንም ተሽከርካሪዎች ይመልከቱ →">View All Vehicles →</a>
+    </div>
+    
+    <div class="cta-section">
+        <h2 style="font-size: 1.3rem;" data-en="Ready to Explore Ethiopia?" data-ar="هل أنت مستعد لاستكشاف إثيوبيا؟" data-am="ኢትዮጵያን ለማሰስ ዝግጁ ነዎት?">Ready to Explore Ethiopia?</h2>
+        <p style="margin: 0.5rem 0;" data-en="Contact us for pricing and availability. We respond within 24 hours." data-ar="اتصل بنا لمعرفة الأسعار والتوفر. نرد خلال 24 ساعة." data-am="ለዋጋ እና አቅርቦት ያግኙን። በ24 ሰአት ውስጥ ምላሽ እንሰጣለን።">Contact us for pricing and availability. We respond within 24 hours.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+            <a href="booking.html" class="btn-gold" data-en="Request Quote →" data-ar="طلب عرض سعر ←" data-am="የዋጋ ጥያቄ ያስገቡ →">Request Quote →</a>
+            <a href="tel:0909505009" class="btn-outline"><i class="fas fa-phone"></i> 0909505009</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>Michael Tour Ethiopia</strong> | <span data-en="Premium Car Rent & Tour" data-ar="تأجير سيارات فاخر وجولات" data-am="ፕሪሚየም የመኪና ኪራይ እና ጉብኝት">Premium Car Rent & Tour</span></p>
+    <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
+    <p>📍 <span data-en="Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba" data-ar="منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا" data-am="ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2025 Michael Tour Ethiopia | <span data-en="All rights reserved" data-ar="جميع الحقوق محفوظة" data-am="መብቱ በህግ የተጠበቀ ነው">All rights reserved</span></p>
+</footer>
+
+<script>
+    const featuredCars = [
+        { name: "Land Rover Defender 110", seats: "7 Seats", image: "images/cars/landroverdefender110.png" },
+        { name: "Toyota Land Cruiser 76", seats: "5 Seats", image: "images/cars/toyotalc76.png" },
+        { name: "Toyota Land Cruiser 200", seats: "5 Seats", image: "images/cars/toyotalc200series.png" }
+    ];
+
+    function loadFeaturedCars() {
+        const container = document.getElementById('featuredCars');
+        if (!container) return;
+        container.innerHTML = featuredCars.map(car => `
+            <div class="car-card">
+                <div class="car-image"><img src="${car.image}" alt="${car.name}" onerror="this.parentElement.innerHTML='<i class=\'fas fa-car\' style=\'font-size: 2rem; color: #DAA520;\'></i>'"></div>
+                <div class="car-info"><h3>${car.name}</h3><p><i class="fas fa-users"></i> ${car.seats}</p><p style="color: #DAA520; font-size: 0.7rem;">📞 <span data-en="Call for price" data-ar="اتصل لمعرفة السعر" data-am="ዋጋ ለማወቅ ይደውሉ">Call for price</span></p><a href="booking.html" class="btn-gold" style="width:100%;display:block;padding:0.5rem;"><span data-en="Request →" data-ar="طلب ←" data-am="ጥያቄ አስገባ →">Request →</span></a></div>
+            </div>
+        `).join('');
+    }
+    
+    loadFeaturedCars();
+
+    // Language translations
+    const translations = {
+        en: {}, ar: {}, am: {}
+    };
+
+    let currentLang = 'en';
+
+    function updateLanguage(lang) {
+        document.querySelectorAll('[data-en]').forEach(el => {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'IMG') return;
+            const text = el.getAttribute(`data-${lang}`);
+            if (text) {
+                if (el.tagName === 'H1' && lang === 'en') el.innerHTML = text;
+                else if (el.tagName === 'H1' && lang === 'ar') el.innerHTML = text;
+                else if (el.tagName === 'H1' && lang === 'am') el.innerHTML = text;
+                else el.textContent = text;
+            }
+        });
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLang = btn.getAttribute('data-lang');
+            updateLanguage(currentLang);
+        });
+    });
+</script>
+</body>
+</html>

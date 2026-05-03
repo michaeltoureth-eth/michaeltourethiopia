@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gallery | Michael Tour Ethiopia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        [dir="rtl"] { direction: rtl; text-align: right; }
+        [dir="ltr"] { direction: ltr; text-align: left; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #DAA520; border-radius: 3px; }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 45px; width: auto; }
+        .logo h1 { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #DAA520); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #DAA520; transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #DAA520; }
+        .book-btn { background: #DAA520; color: black !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .book-btn::after { display: none; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: #DAA520; color: black; }
+        .lang-btn:hover:not(.active) { background: rgba(218, 165, 32, 0.3); }
+
+        .social-wrapper { display: flex; justify-content: center; margin: 0.5rem 1rem; flex-wrap: wrap; gap: 1rem; }
+        .social-card {
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            gap: 15px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50px;
+        }
+        .socialContainer {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containerPhone:hover { background-color: #34B7F1; }
+        .containerTikTok:hover { background-color: #25f4ee; }
+        .containerFacebook:hover { background-color: #1877f2; }
+        .containerWhatsApp:hover { background-color: #25D366; }
+        .socialContainer:active { transform: scale(0.9); }
+        .socialSvg { width: 20px; height: 20px; }
+        .socialSvg path { fill: rgb(255, 255, 255); }
+        .socialContainer:hover .socialSvg { animation: slide-in-top 0.3s both; }
+        @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        .page-header { text-align: center; padding: 2rem 1rem; background: rgba(0, 0, 0, 0.5); margin: 1rem; border-radius: 24px; backdrop-filter: blur(5px); }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .page-header h1 span { color: #DAA520; }
+        .page-header p { font-size: 0.9rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+        .gallery-tabs { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-bottom: 2rem; }
+        .tab-btn {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .tab-btn.active, .tab-btn:hover { background: #DAA520; color: black; border-color: #DAA520; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        .gallery-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+            transition: 0.3s;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .gallery-item:hover { transform: scale(1.02); border-color: #DAA520; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+        .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
+        .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .page-header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.8rem; }
+            .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
+            .social-card { padding: 8px 15px; gap: 10px; }
+            .socialContainer { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <h1>MICHAEL TOUR <span>ETHIOPIA</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-ar="الرئيسية" data-am="ዋና ገጽ">Home</a></li>
+            <li><a href="about.html" data-en="About" data-ar="عن" data-am="ስለ">About</a></li>
+            <li><a href="gallery.html" data-en="Gallery" data-ar="معرض" data-am="ማዕከለ ስዕላት">Gallery</a></li>
+            <li><a href="tours.html" data-en="Destinations" data-ar="وجهات" data-am="መዳረሻዎች">Destinations</a></li>
+            <li><a href="cars.html" data-en="Cars" data-ar="سيارات" data-am="መኪናዎች">Cars</a></li>
+            <li><a href="booking.html" class="book-btn" data-en="Book" data-ar="احجز" data-am="አሁን ይመዝገቡ">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="social-wrapper">
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="am">አማርኛ</button>
+    </div>
+    <div class="social-card">
+        <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
+        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1 id="pageTitle"><span>Our Gallery</span></h1>
+    <p id="pageSubtitle">Explore Ethiopia through our collection of heritage, culture, and landscapes</p>
+</div>
+
+<div class="container">
+    <div class="gallery-tabs" id="galleryTabs">
+        <button class="tab-btn active" data-category="royal" data-en="👑 Royal Families" data-ar="👑 العائلات المالكة" data-am="👑 ንጉሣዊ ቤተሰቦች">👑 Royal Families</button>
+        <button class="tab-btn" data-category="food" data-en="🍛 Food & Coffee" data-ar="🍛 الطعام والقهوة" data-am="🍛 ምግብ እና ቡና">🍛 Food & Coffee</button>
+        <button class="tab-btn" data-category="culture" data-en="🎭 Culture" data-ar="🎭 الثقافة" data-am="🎭 ባህል">🎭 Culture</button>
+        <button class="tab-btn" data-category="festivals" data-en="🎉 Festivals" data-ar="🎉 المهرجانات" data-am="🎉 በዓላት">🎉 Festivals</button>
+        <button class="tab-btn" data-category="places" data-en="🏔️ Places & Nature" data-ar="🏔️ الأماكن والطبيعة" data-am="🏔️ ቦታዎች እና ተፈጥሮ">🏔️ Places & Nature</button>
+        <button class="tab-btn" data-category="camping" data-en="🏕️ Camping" data-ar="🏕️ التخييم" data-am="🏕️ ካምፕ">🏕️ Camping</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #DAA520;"></i>
+            <p>Loading images...</p>
+        </div>
+    </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+    <img id="lightboxImg" src="">
+</div>
+
+<footer class="footer">
+    <p><strong>Michael Tour Ethiopia</strong> | <span id="footerText">Premium Car Rent & Tour</span></p>
+    <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
+    <p>📍 <span id="locationText">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2025 Michael Tour Ethiopia | <span id="rightsText">All rights reserved</span></p>
+</footer>
+
+<script>
+    // ============================================================
+    // YOUR IMGBB IMAGE LINKS
+    // ============================================================
+
+    const galleryImages = {
+        royal: [
+            "https://i.ibb.co/FqmZf0VG/photo-1-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/yx7TFpL/image.jpg",
+            "https://i.ibb.co/v4Kz8wzg/If-not-a-statue-but-why-not-another-book-Thanks-for-sharing-this-intriguing-snap.jpg",
+            "https://i.ibb.co/35B8b7Hz/Iyoas-I-of-Ethiopia.jpg",
+            "https://i.ibb.co/zhLcHbVB/Iyasu-II-of-Ethiopia-and-Mentewab.png",
+            "https://i.ibb.co/ZpPdqwHC/Iyasu-I-of-Ethiopia.jpg",
+            "https://i.ibb.co/xtd6ZV0Q/Israel.jpg",
+            "https://i.ibb.co/t0Yv4mm/Ioel.jpg",
+            "https://i.ibb.co/B5BRbs0n/Haile-Melekot.jpg",
+            "https://i.ibb.co/fG9hJr8Z/Igreja-de-Nossa-Senhora-do-Ros-rio-dos-Pretos-Salvador-Imagem-do-Santo-Elesb-o-2019-0539.jpg",
+            "https://i.ibb.co/1G5bRKHq/Gebre-Mesqel-Lalibela.png",
+            "https://i.ibb.co/fGxNy832/Gersem.jpg",
+            "https://i.ibb.co/QFKqSvkc/Gebre-Meskel-portrait.jpg",
+            "https://i.ibb.co/0pjP3rN9/Garter-encircled-Arms-of-Haile-Selassie-I-Emperor-of-Ethiopia.jpg",
+            "https://i.ibb.co/p79GTD1/Ethiopian-old-vibe.jpg",
+            "https://i.ibb.co/pjC5TCdg/Ethiopian-emperor-Queen-Elizabeth.jpg",
+            "https://i.ibb.co/Z6MRdgCC/Ethiopia-Ras-Wolde-Giorgis-crowned-1.jpg",
+            "https://i.ibb.co/j9jzDWxZ/Ethiopia-1.jpg",
+            "https://i.ibb.co/rK6q2fMM/Eon.jpg",
+            "https://i.ibb.co/k6gWr1Cb/Endubis.jpg",
+            "https://i.ibb.co/d4ch8rys/Emperor-fasilides-king-of-ethiopia.jpg",
+            "https://i.ibb.co/5x5HR6st/Emperor-Tekle-Giyorgis-II.jpg",
+            "https://i.ibb.co/gMNbbwBT/Emperor-Menelik-I-Bringing-the-Zion-Tabot-Ark-of-the-covenant-to-Axum.jpg",
+            "https://i.ibb.co/Sw73p1Qm/Emperor-Yohannes-IV.jpg",
+            "https://i.ibb.co/LzwpSCvd/download-43.jpg",
+            "https://i.ibb.co/hJt91Lz4/download-42.jpg",
+            "https://i.ibb.co/Z6LKC6ns/download-41.jpg",
+            "https://i.ibb.co/LhYydyQF/download-39.jpg",
+            "https://i.ibb.co/69gR7Gd/download-40.jpg",
+            "https://i.ibb.co/G3r8HppT/download-38.jpg",
+            "https://i.ibb.co/TBC1c7cD/Crown-Prince-Asfaw-Wossen.jpg",
+            "https://i.ibb.co/CKRMfMQ8/Cristofano-dell-Altissimo-Portrait-of-Lebn-Dengel-c-1552-1568.jpg",
+            "https://i.ibb.co/ycfHY2m1/Claudius-King-of-Ethiopia.jpg",
+            "https://i.ibb.co/Q3r34531/Category-Tewodros-II-of-Ethiopia-Wikimedia-Commons.jpg",
+            "https://i.ibb.co/F4DLsph7/Cap-Abebe-Bikila-Enlisting-as-a-soldier-before-his-athletic-career-he-rose-to-the-rank-of-captain.jpg",
+            "https://i.ibb.co/7JWpp7pd/Bundesarchiv-Bild-102-12834-Kronprinz-von-Abessinien-und-K-nig-Fuad-I.jpg",
+            "https://i.ibb.co/yFgYLLFx/Bakaffa-I-of-Ethiopia.jpg",
+            "https://i.ibb.co/V0fYmwMT/Armah.jpg",
+            "https://i.ibb.co/MyMgWfCw/AXUM-Ezanas-Circa-330-360.jpg",
+            "https://i.ibb.co/nsfTNHzr/ARBEGNA.jpg",
+            "https://i.ibb.co/d40npTyp/Araya-Selassie.jpg",
+            "https://i.ibb.co/SwnkV0X8/Amendment-Post-The-Crowns-of-Ethiopia-1.jpg",
+            "https://i.ibb.co/zTRZFYg0/Amda-Seyon.jpg",
+            "https://i.ibb.co/20VxnkzN/ABISSINA-Degiac-Aiemaio-Nipote-di-Ras-Uoldeghirghis-1.jpg",
+            "https://i.ibb.co/LzN3Hp6B/1920px-Hijra-Abyssinia-Rashid-ad-Din.jpg",
+            "https://i.ibb.co/4wNXH5Yn/my-family.jpg",
+            "https://i.ibb.co/gbtF1fKK/Zewditu-Empress.png",
+            "https://i.ibb.co/S4tmD518/Zewditu-the-daughter-of-Emperor-Menelik-II-of-Ethiopia.jpg",
+            "https://i.ibb.co/rGrFNL9z/Yohannes-IV-seal.jpg",
+            "https://i.ibb.co/RGsJtHGQ/Yohannes-IV-4.jpg",
+            "https://i.ibb.co/Psj7P73K/Yekuno-Amlak.png",
+            "https://i.ibb.co/m5Sm1TTZ/Yekuno-Amlak.jpg",
+            "https://i.ibb.co/NdrR2J3D/Yagbea-Sion-Battling-Ada-Sultan.jpg",
+            "https://i.ibb.co/7cgnQJM/Wazena.jpg",
+            "https://i.ibb.co/svyVWm34/Wazeba-12mm.jpg",
+            "https://i.ibb.co/bjXSkzvh/Wazeb.jpg",
+            "https://i.ibb.co/xtJ0Pvc8/T-wodros-II-2.jpg",
+            "https://i.ibb.co/Zpp0L9qX/Simeon-Solomon-King-Solomon-1872-or-1874-NGA-76152-cropped.jpg",
+            "https://i.ibb.co/DDGJ9d1x/Startling-Saints-Saint-Elesbaan-of-Ethiopia-The-Historian-s-Hut.jpg",
+            "https://i.ibb.co/Z1Hg3BLT/Sarsa-Dengel-and-other-Monarchs-cropped.jpg",
+            "https://i.ibb.co/4ZYt7KSK/Saint-Kaleb-of-Axum-with-the-lion-flag.jpg",
+            "https://i.ibb.co/nqbh4RcT/Ras-M-konnen-W-ld-Mika-l-1852-1906.jpg",
+            "https://i.ibb.co/XZJrtMG2/Ras-Makonnen-Shum-of-Harar-1902.jpg",
+            "https://i.ibb.co/S7Mwp2fP/Ras-Besibe-the-son-of-Negus-King-Tekle-Haymanot-of-Gojjam.jpg",
+            "https://i.ibb.co/mFHbbqRM/Queen-of-Sheba-1907-by-Edward-Slocombe.jpg",
+            "https://i.ibb.co/rRJrFgPq/Psalms-128-1-Blessed-is-everyone-who-fears-the-Lord-who-walks-in-his-ways.jpg",
+            "https://i.ibb.co/kg8770Yk/Ousas.jpg",
+            "https://i.ibb.co/d0PTPxYr/Ousanas.jpg",
+            "https://i.ibb.co/QvkvVTj0/Nezool.jpg",
+            "https://i.ibb.co/Bvtss0C/Ouazebas.jpg",
+            "https://i.ibb.co/ds8DdX6P/Menas-of-Ethiopia.jpg",
+            "https://i.ibb.co/mFYyZV1n/Mhdys.jpg",
+            "https://i.ibb.co/6cf5DtmG/Lion-of-Judah-city-architect-Addis-Abeba.jpg",
+            "https://i.ibb.co/S4S8PT8J/Lidj-Iyasu.jpg",
+            "https://i.ibb.co/YTZWtZWc/King-Endybis-Ethiopia227-235-CE.jpg",
+            "https://i.ibb.co/8D42LqxS/King-Sahla-Sellase-from-Shewa.jpg"
+        ],
+        food: [
+            "https://i.ibb.co/LDYsqWSV/ethiopia-foodie.jpg",
+            "https://i.ibb.co/bMc1wrzz/Nothing-beats-habesha-food.jpg",
+            "https://i.ibb.co/7tVYsnww/Family-meal-Ethiopian-home.jpg",
+            "https://i.ibb.co/zVrhXzPQ/Ethiopian-Food.jpg",
+            "https://i.ibb.co/bMvq3tQS/ethiopia-addis-abeba-tej-honey-wine.jpg",
+            "https://i.ibb.co/zhKYB87T/download-33.jpg",
+            "https://i.ibb.co/svZ75MYY/download-32.jpg"
+        ],
+        culture: [
+            "https://i.ibb.co/bgcPdf1d/photo-16-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/mVnQPk92/photo-15-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/B2XxSVCX/photo-14-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/spgm35b8/photo-13-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/YFTBVb6V/photo-12-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/RpRjWXS3/photo-11-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/pvjXnRcy/photo-10-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/VpHdqfb9/photo-9-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/qLtbdYQD/photo-8-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/vvJ9rGLn/photo-7-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/ycWvGjs8/photo-6-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/hRvPMhdK/photo-5-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/BHjxGtSF/photo-4-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/S4bn4Lgy/photo-3-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/SXjRDvR0/photo-2-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/H8LrNYB/photo-39-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/S8pH3zS/photo-37-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/xthyg5kP/photo-22-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/MkbfNQY6/photo-20-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/qYknVNYS/photo-19-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/k2DbVz8M/photo-18-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/k2fpyCw8/photo-17-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/BV70F2zQ/Harar.jpg",
+            "https://i.ibb.co/B2mzHN7y/Bisrate-Gabriel.jpg"
+        ],
+        festivals: [
+            "https://i.ibb.co/VpHdqfb9/photo-9-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/qLtbdYQD/photo-8-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/hRvPMhdK/photo-5-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/S8pH3zS/photo-37-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/DgDB9zdq/photo-36-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/ccYyrYck/photo-35-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/1ftw59Q5/photo-34-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/6JY67xDK/photo-33-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/4wZw8cZ8/photo-32-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/ZR7dK9vh/photo-31-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/rKvM2GHb/photo-28-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/xt7SVsPh/photo-27-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/hFyFb6ty/photo-26-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/ymwfSTtf/photo-25-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/nqffYBRx/photo-24-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/MkbfNQY6/photo-20-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/8LPWH3D7/image.jpg"
+        ],
+        places: [
+            "https://i.ibb.co/k6MCnJ9v/photo-51-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/qF9f5MVv/photo-50-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/WWnx3DKJ/photo-49-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/LhhtSHLP/photo-48-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/0jQPMLnT/photo-47-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/bR39bN6g/photo-46-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/67RW4qfW/photo-45-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/7HszFd0/photo-44-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/nN4yZzQm/photo-43-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/rR6cN7hD/photo-42-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/PvyNy5CZ/photo-41-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/VyXYT5D/photo-40-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/Y7sdM9gR/photo-38-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/hFHw1Bnc/photo-29-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/bgVk6Vj3/photo-21-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/CpYh0LDh/Oldest-ethiopian-bible.jpg",
+            "https://i.ibb.co/3Y0jK3p2/Jogol-harar-harari-harar-ethiopia.jpg",
+            "https://i.ibb.co/BKqhBCwZ/Gurage-gojo.jpg",
+            "https://i.ibb.co/jZP7N85p/Gonder-is-gearing-up-for-Timket-celebrations-gonder-Ethiopia-habeha-Timket-Travel.jpg",
+            "https://i.ibb.co/bgqJCccD/ethiopia-afar-danakil-and-tigray.jpg",
+            "https://i.ibb.co/ZpZzcKqw/harar-ethiopia.jpg",
+            "https://i.ibb.co/WpvJ90T0/ethiopia.jpg",
+            "https://i.ibb.co/p6DGmCCW/Ethiopia-Axum-Tigray-Obelisk.jpg",
+            "https://i.ibb.co/tPkW2LZJ/download-37.jpg",
+            "https://i.ibb.co/RGhqMwKX/download-36.jpg",
+            "https://i.ibb.co/N2KvHBj7/download-35.jpg",
+            "https://i.ibb.co/wZFrJYL6/download-34.jpg",
+            "https://i.ibb.co/MxHgpt1f/Danakil-Depression-Ethiopia.jpg",
+            "https://i.ibb.co/4wYfr1k7/A-stunning-view-of-Addis-Ababa-Ethiopia.jpg",
+            "https://i.ibb.co/Psxbv53N/11-of-The-Most-Eye-Catching-Architectural-Wonders-of-Africa.jpg",
+            "https://i.ibb.co/0RX7F7NT/Tigray-Ethiopia-1.jpg",
+            "https://i.ibb.co/vxmxPFJF/Sof-Omar-Caves-Ethiopia.jpg",
+            "https://i.ibb.co/GhB0d74/NATIONAL-PALACE.jpg",
+            "https://i.ibb.co/cddR07n/Museum-of-science-Addis-Ababa.jpg",
+            "https://i.ibb.co/yB7H4mYf/Jinbar-Falls-Ethiopia.jpg",
+            "https://i.ibb.co/Kcj6Rm8M/Harenna-Forest-in-Ethiopia-s-Bale-Mountains-by-Robin-Moore-1.jpg",
+            "https://i.ibb.co/8LPWH3D7/image.jpg",
+            "https://i.ibb.co/RkmBCFQ3/image.jpg"
+        ],
+        camping: []
+    };
+
+    let currentCategory = 'royal';
+    let currentLang = 'en';
+
+    const translations = {
+        en: {
+            pageTitle: 'Our <span>Gallery</span>',
+            pageSubtitle: 'Explore Ethiopia through our collection of heritage, culture, and landscapes',
+            footerText: 'Premium Car Rent & Tour',
+            locationText: 'Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba',
+            rightsText: 'All rights reserved',
+            loading: 'Loading images...',
+            noImages: 'No images in this category yet',
+            campingSoon: 'Camping photos will be added soon'
+        },
+        ar: {
+            pageTitle: '<span>معرضنا</span>',
+            pageSubtitle: 'استكشف إثيوبيا من خلال مجموعتنا من التراث والثقافة والمناظر الطبيعية',
+            footerText: 'تأجير سيارات فاخر وجولات',
+            locationText: 'منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا',
+            rightsText: 'جميع الحقوق محفوظة',
+            loading: 'جاري تحميل الصور...',
+            noImages: 'لا توجد صور في هذه الفئة بعد',
+            campingSoon: 'سيتم إضافة صور التخييم قريبًا'
+        },
+        am: {
+            pageTitle: '<span>ማዕከለ ስዕላት</span>',
+            pageSubtitle: 'ኢትዮጵያን በቅርስ፣ በባህል እና በመልክዓ ምድር ስብስባችን በኩል ያስሱ',
+            footerText: 'ፕሪሚየም የመኪና ኪራይ እና ጉብኝት',
+            locationText: 'ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ',
+            rightsText: 'መብቱ በህግ የተጠበቀ ነው',
+            loading: 'ምስሎች በመጫን ላይ...',
+            noImages: 'በዚህ ምድብ ውስጥ ምንም ምስሎች የሉም',
+            campingSoon: 'የካምፕ ፎቶዎች በቅርቡ ይጨምራሉ'
+        }
+    };
+
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        const images = galleryImages[currentCategory];
+        
+        if (!images || images.length === 0) {
+            grid.innerHTML = `<div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+                <i class="fas fa-camera" style="font-size: 2rem; color: #DAA520;"></i>
+                <p>${translations[currentLang].noImages}</p>
+                <p style="font-size: 0.7rem;">${translations[currentLang].campingSoon}</p>
+            </div>`;
+            return;
+        }
+        
+        grid.innerHTML = images.map(img => `
+            <div class="gallery-item" onclick="openLightbox('${img}')">
+                <img src="${img}" alt="" loading="lazy">
+            </div>
+        `).join('');
+    }
+
+    function openLightbox(src) {
+        const lightbox = document.getElementById('lightbox');
+        document.getElementById('lightboxImg').src = src;
+        lightbox.classList.add('active');
+    }
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        
+        // Update page header
+        document.getElementById('pageTitle').innerHTML = translations[lang].pageTitle;
+        document.getElementById('pageSubtitle').innerHTML = translations[lang].pageSubtitle;
+        
+        // Update footer
+        document.getElementById('footerText').innerHTML = translations[lang].footerText;
+        document.getElementById('locationText').innerHTML = translations[lang].locationText;
+        document.getElementById('rightsText').innerHTML = translations[lang].rightsText;
+        
+        // Update tab buttons text (keeping emojis)
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            const emoji = btn.textContent.charAt(0);
+            const category = btn.getAttribute('data-category');
+            const translationsMap = {
+                royal: { en: 'Royal Families', ar: 'العائلات المالكة', am: 'ንጉሣዊ ቤተሰቦች' },
+                food: { en: 'Food & Coffee', ar: 'الطعام والقهوة', am: 'ምግብ እና ቡና' },
+                culture: { en: 'Culture', ar: 'الثقافة', am: 'ባህል' },
+                festivals: { en: 'Festivals', ar: 'المهرجانات', am: 'በዓላት' },
+                places: { en: 'Places & Nature', ar: 'الأماكن والطبيعة', am: 'ቦታዎች እና ተፈጥሮ' },
+                camping: { en: 'Camping', ar: 'التخييم', am: 'ካምፕ' }
+            };
+            btn.innerHTML = `${emoji} ${translationsMap[category][lang]}`;
+        });
+        
+        // Update nav links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const arText = link.getAttribute('data-ar');
+            const amText = link.getAttribute('data-am');
+            const enText = link.getAttribute('data-en');
+            if (lang === 'ar' && arText) link.textContent = arText;
+            else if (lang === 'am' && amText) link.textContent = amText;
+            else if (enText) link.textContent = enText;
+        });
+        
+        // RTL for Arabic
+        if (lang === 'ar') document.body.setAttribute('dir', 'rtl');
+        else document.body.setAttribute('dir', 'ltr');
+        
+        // Re-render gallery to update empty state messages
+        renderGallery();
+    }
+
+    document.getElementById('lightbox').addEventListener('click', () => {
+        document.getElementById('lightbox').classList.remove('active');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            renderGallery();
+        });
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    renderGallery();
+</script>
+</body>
+</html>

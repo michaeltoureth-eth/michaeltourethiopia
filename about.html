@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Ethiopia | Michael Tour Ethiopia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        [dir="rtl"] { direction: rtl; text-align: right; }
+        [dir="ltr"] { direction: ltr; text-align: left; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #DAA520; border-radius: 3px; }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 45px; width: auto; }
+        .logo h1 { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #DAA520); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #DAA520; transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #DAA520; }
+        .book-btn { background: #DAA520; color: black !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .book-btn::after { display: none; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: #DAA520; color: black; }
+        .lang-btn:hover:not(.active) { background: rgba(218, 165, 32, 0.3); }
+
+        .social-wrapper { display: flex; justify-content: center; margin: 0.5rem 1rem; flex-wrap: wrap; gap: 1rem; }
+        .social-card {
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            gap: 15px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50px;
+        }
+        .socialContainer {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containerPhone:hover { background-color: #34B7F1; }
+        .containerTikTok:hover { background-color: #25f4ee; }
+        .containerFacebook:hover { background-color: #1877f2; }
+        .containerWhatsApp:hover { background-color: #25D366; }
+        .socialContainer:active { transform: scale(0.9); }
+        .socialSvg { width: 20px; height: 20px; }
+        .socialSvg path { fill: rgb(255, 255, 255); }
+        .socialContainer:hover .socialSvg { animation: slide-in-top 0.3s both; }
+        @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        .page-header { text-align: center; padding: 2rem 1rem; background: rgba(0, 0, 0, 0.5); margin: 1rem; border-radius: 24px; backdrop-filter: blur(5px); }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .page-header h1 span { color: #DAA520; }
+        .page-header p { font-size: 0.9rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); text-align: center; padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(218, 165, 32, 0.2); transition: 0.3s; }
+        .stat-card:hover { border-color: #DAA520; transform: translateY(-3px); }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: #DAA520; }
+        .stat-label { font-size: 0.8rem; margin-top: 0.3rem; }
+
+        .info-section { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(218, 165, 32, 0.15); transition: 0.3s; }
+        .info-section:hover { border-color: rgba(218, 165, 32, 0.4); }
+        .section-title { font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: #DAA520; border-left: 3px solid #DAA520; padding-left: 12px; }
+        .section-content p { font-size: 0.9rem; line-height: 1.6; color: #ddd; }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tag { background: rgba(218, 165, 32, 0.15); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; border: 1px solid rgba(218, 165, 32, 0.3); }
+        .timeline-item { background: rgba(0, 0, 0, 0.4); padding: 1rem; border-radius: 16px; margin-bottom: 0.8rem; border-left: 3px solid #DAA520; }
+        .timeline-title { color: #DAA520; font-weight: 600; margin-bottom: 0.3rem; }
+        .tribes-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+        .tribe-tag { background: rgba(0, 0, 0, 0.5); padding: 0.4rem 1rem; border-radius: 30px; font-size: 0.75rem; border: 1px solid rgba(218, 165, 32, 0.2); }
+
+        .back-home { text-align: center; margin-top: 2rem; }
+        .btn-gold { display: inline-block; background: #DAA520; color: black; padding: 0.7rem 1.8rem; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-gold:hover { background: #FFD700; transform: translateY(-2px); }
+
+        .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
+        .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .page-header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .social-card { padding: 8px 15px; gap: 10px; }
+            .socialContainer { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <h1>MICHAEL TOUR <span>ETHIOPIA</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-ar="الرئيسية" data-am="ዋና ገጽ">Home</a></li>
+            <li><a href="about.html" data-en="About" data-ar="عن" data-am="ስለ">About</a></li>
+            <li><a href="gallery.html" data-en="Gallery" data-ar="معرض" data-am="ማዕከለ ስዕላት">Gallery</a></li>
+            <li><a href="tours.html" data-en="Destinations" data-ar="وجهات" data-am="መዳረሻዎች">Destinations</a></li>
+            <li><a href="cars.html" data-en="Cars" data-ar="سيارات" data-am="መኪናዎች">Cars</a></li>
+            <li><a href="booking.html" class="book-btn" data-en="Book" data-ar="احجز" data-am="አሁን ይመዝገቡ">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="social-wrapper">
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="am">አማርኛ</button>
+    </div>
+    <div class="social-card">
+        <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
+        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1 data-en="About <span>Ethiopia</span>" data-ar="عن <span>إثيوبيا</span>" data-am="ስለ <span>ኢትዮጵያ</span>">About <span>Ethiopia</span></h1>
+    <p data-en="The Land of Origins — Where humanity began, where ancient kings ruled, and where 13 months of sunshine await you. The only African nation never colonized." data-ar="أرض الأصول — حيث بدأت البشرية، حيث حكم الملوك القدماء، وحيث تنتظرك 13 شهرًا من أشعة الشمس. الأمة الأفريقية الوحيدة التي لم تستعمر قط." data-am="የመነሻ ምድር — ሰብዓዊነት የተጀመረበት፣ የጥንት ንጉሶች የገዙበት፣ እና 13 ወራት የፀሀይ ብርሃን የሚጠብቅዎት። ቅኝ ግዛት ያልነበረባት ብቸኛ አፍሪካዊት ሀገር።">The Land of Origins — Where humanity began, where ancient kings ruled, and where 13 months of sunshine await you. The only African nation never colonized.</p>
+</div>
+
+<div class="container">
+    <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">3,000+</div><div class="stat-label" data-en="Years of History" data-ar="سنوات من التاريخ" data-am="የታሪክ ዓመታት">Years of History</div></div>
+        <div class="stat-card"><div class="stat-number">80+</div><div class="stat-label" data-en="Languages & Tribes" data-ar="اللغات والقبائل" data-am="ቋንቋዎች እና ጎሳዎች">Languages & Tribes</div></div>
+        <div class="stat-card"><div class="stat-number">9</div><div class="stat-label" data-en="UNESCO Sites" data-ar="مواقع اليونسكو" data-am="የዩኔስኮ ጣቢያዎች">UNESCO Sites</div></div>
+        <div class="stat-card"><div class="stat-number">13</div><div class="stat-label" data-en="Months of Sunshine" data-ar="شهرًا من أشعة الشمس" data-am="የፀሀይ ወራት">Months of Sunshine</div></div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-crown"></i> <span data-en="History & Solomonic Dynasty" data-ar="التاريخ والسلالة السليمانية" data-am="ታሪክ እና ሰሎሞናዊ ሥርወ መንግሥት">History & Solomonic Dynasty</span></h3>
+        <div class="section-content">
+            <p data-en="The Solomonic dynasty claims descent from Menelik I, son of King Solomon of Israel and the Queen of Sheba (Makeda). It ruled Ethiopia from 1270 to 1974 — one of the longest-reigning dynasties in world history. The Ark of the Covenant is believed to be in Axum." data-ar="تزعم السلالة السليمانية أنها تنحدر من منليك الأول، ابن الملك سليمان ملك إسرائيل وملكة سبأ (ماكيدا). حكمت إثيوبيا من 1270 إلى 1974 - واحدة من أطول السلالات حكمًا في تاريخ العالم. يُعتقد أن تابوت العهد موجود في أكسوم." data-am="የሰሎሞናዊው ሥርወ መንግሥት ከንጉሥ ሰሎሞን የእስራኤል ልጅ እና ከንግሥተ ሳባ (ማኬዳ) ከምኒልክ ቀዳማዊ የመጣ ነው ይላል። ከ1270 እስከ 1974 ድረስ ኢትዮጵያን ገዛች — በዓለም ታሪክ ውስጥ በጣም ረዥም ጊዜ ከነገሡ ሥርወ መንግሥታት አንዱ። የቃል ኪዳን ታቦት በአክሱም እንደሚገኝ ይታመናል።">The Solomonic dynasty claims descent from Menelik I, son of King Solomon of Israel and the Queen of Sheba (Makeda). It ruled Ethiopia from 1270 to 1974 — one of the longest-reigning dynasties in world history. The Ark of the Covenant is believed to be in Axum.</p>
+            <div class="tag-list">
+                <span class="tag">Menelik II</span><span class="tag">Haile Selassie I</span><span class="tag">Tewodros II</span>
+                <span class="tag">Yohannes IV</span><span class="tag">Fasilides</span><span class="tag">Queen of Sheba</span>
+                <span class="tag">Ezana</span><span class="tag">Kaleb</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-timeline"></i> <span data-en="Great Emperors" data-ar="الأباطرة العظماء" data-am="ታላላቅ ንጉሠ ነገሥት">Great Emperors</span></h3>
+        <div class="timeline-item">
+            <div class="timeline-title"><span data-en="⚔️ Emperor Menelik II (1889-1913)" data-ar="⚔️ الإمبراطور منليك الثاني (1889-1913)" data-am="⚔️ ንጉሠ ነገሥት ምኒልክ ቀዳማዊ (1889-1913)">⚔️ Emperor Menelik II (1889-1913)</span></div>
+            <p data-en="Defeated Italy at the Battle of Adwa (1896) — first African victory against European colonization. Founded Addis Ababa and modernized Ethiopia." data-ar="هزم إيطاليا في معركة عدوة (1896) - أول انتصار أفريقي ضد الاستعمار الأوروبي. أسس أديس أبابا وحدث إثيوبيا." data-am="ጣሊያንን በዓድዋ ጦርነት (1896) አሸነፈ — በአውሮፓ ቅኝ ግዛት ላይ የመጀመሪያው የአፍሪካ ድል። አዲስ አበባን መሠረተ እና ኢትዮጵያን ዘመናዊ አደረገ።">Defeated Italy at the Battle of Adwa (1896) — first African victory against European colonization. Founded Addis Ababa and modernized Ethiopia.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-title"><span data-en="👑 Emperor Haile Selassie I (1930-1974)" data-ar="👑 الإمبراطور هيلا سيلاسي الأول (1930-1974)" data-am="👑 ንጉሠ ነገሥት ቀዳማዊ ኃይለ ሥላሴ (1930-1974)">👑 Emperor Haile Selassie I (1930-1974)</span></div>
+            <p data-en="The 225th Solomonic emperor. Modernized Ethiopia, founded the African Union, and became a global symbol of African independence." data-ar="الإمبراطور السليماني رقم 225. قام بتحديث إثيوبيا، وأسس الاتحاد الأفريقي، وأصبح رمزًا عالميًا للاستقلال الأفريقي." data-am="225ኛው የሰሎሞናዊ ንጉሠ ነገሥት። ኢትዮጵያን ዘመናዊ አደረገ፣ የአፍሪካ ህብረትን መሠረተ፣ እና የአፍሪካ ነጻነት ዓለም አቀፍ ምልክት ሆነ።">The 225th Solomonic emperor. Modernized Ethiopia, founded the African Union, and became a global symbol of African independence.</p>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-title"><span data-en="🛡️ Emperor Tewodros II (1855-1868)" data-ar="🛡️ الإمبراطور تيودروس الثاني (1855-1868)" data-am="🛡️ ንጉሠ ነገሥት ቴወድሮስ ቀዳማዊ (1855-1868)">🛡️ Emperor Tewodros II (1855-1868)</span></div>
+            <p data-en="'The Unifier' — began modernizing Ethiopia and reunified warring regional lords." data-ar="'الموحد' - بدأ في تحديث إثيوبيا وأعاد توحيد أمراء المناطق المتحاربين." data-am="'አንዳነት' — ኢትዮጵያን ማዘመን ጀመረ እና ተዋጊ የክልል ገዢዎችን አንድ አደረገ።">'The Unifier' — began modernizing Ethiopia and reunified warring regional lords.</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-mountain"></i> <span data-en="Geography & Nature" data-ar="الجغرافيا والطبيعة" data-am="ጂኦግራፊ እና ተፈጥሮ">Geography & Nature</span></h3>
+        <div class="section-content">
+            <p data-en="Ethiopia is called the 'Roof of Africa' — from Ras Dashen (4,550m, 4th highest in Africa) to Danakil Depression (-125m, one of the hottest places on Earth)." data-ar="تُسمى إثيوبيا 'سقف أفريقيا' - من رأس داشن (4,550 مترًا، رابع أعلى قمة في أفريقيا) إلى منخفض داناكيل (-125 مترًا، أحد أكثر الأماكن سخونة على وجه الأرض)." data-am="ኢትዮጵያ 'የአፍሪካ ጣሪያ' ትባላለች — ከራስ ዳሸን (4,550ሜ፣ በአፍሪካ 4ኛ ከፍታ) እስከ ዳናኪል ዲፕሬሽን (-125ሜ፣ በምድር ላይ በጣም ሞቃታማ ቦታዎች አንዱ)።">Ethiopia is called the 'Roof of Africa' — from Ras Dashen (4,550m, 4th highest in Africa) to Danakil Depression (-125m, one of the hottest places on Earth).</p>
+            <div class="tag-list">
+                <span class="tag">Simien Mountains</span><span class="tag">Blue Nile Falls</span><span class="tag">Lake Tana</span>
+                <span class="tag">Bale Mountains</span><span class="tag">Erta Ale Volcano</span><span class="tag">Danakil Depression</span>
+                <span class="tag">Sof Omar Caves</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-church"></i> <span data-en="Religion & Faith" data-ar="الدين والإيمان" data-am="ሃይማኖት እና እምነት">Religion & Faith</span></h3>
+        <div class="section-content">
+            <p data-en="Ethiopia is one of the first Christian nations (4th century AD). The Ethiopian Orthodox Tewahedo Church is one of the oldest in the world. Harar is the 4th holiest city in Islam with 82 mosques. The Beta Israel (Ethiopian Jews) are one of the oldest Jewish communities." data-ar="إثيوبيا هي واحدة من أولى الدول المسيحية (القرن الرابع الميلادي). تعتبر الكنيسة الأرثوذكسية التوحيدية الإثيوبية من أقدم الكنائس في العالم. هرر هي رابع أقدس مدينة في الإسلام وتضم 82 مسجدًا. بيتا إسرائيل (اليهود الإثيوبيون) هي واحدة من أقدم المجتمعات اليهودية." data-am="ኢትዮጵያ ከመጀመሪያዎቹ ክርስቲያን አገሮች አንዷ ናት (4ኛው ክፍለ ዘመን ዓ.ም)። የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን በዓለም ላይ ካሉት ጥንታዊ ቤተክርስቲያናት አንዷ ናት። ሐረር በእስልምና 4ኛዋ ቅድስት ከተማ ናት 82 መስጊዶች አሉት። ቤታ እስራኤል (ኢትዮጵያውያን አይሁዶች) ከጥንታዊ አይሁድ ማህበረሰቦች አንዱ ነው።">Ethiopia is one of the first Christian nations (4th century AD). The Ethiopian Orthodox Tewahedo Church is one of the oldest in the world. Harar is the 4th holiest city in Islam with 82 mosques. The Beta Israel (Ethiopian Jews) are one of the oldest Jewish communities.</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-calendar-alt"></i> <span data-en="Ethiopian Calendar" data-ar="التقويم الإثيوبي" data-am="የኢትዮጵያ ዘመን አቆጣጠር">Ethiopian Calendar</span></h3>
+        <div class="section-content">
+            <p data-en="Current Year:  (7-8 years behind Gregorian calendar) | Months: 13 months (12 months of 30 days + Pagume — 5 or 6 extra days) | New Year (Enkutatash): September 11 (Meskerem 1) | Famous saying: 'Ethiopia has 13 months of sunshine' | Time: Day starts at dawn (6:00 AM = 12:00 Ethiopian time)" data-ar="العام الحالي:  (متأخر بـ7-8 سنوات عن التقويم الميلادي) | الأشهر: 13 شهرًا (12 شهرًا من 30 يومًا + باجومي - 5 أو 6 أيام إضافية) | رأس السنة (إنكوتاتاش): 11 سبتمبر (مسكريم 1) | القول الشهير: 'إثيوبيا لديها 13 شهرًا من أشعة الشمس' | الوقت: يبدأ اليوم عند الفجر (6:00 صباحًا = 12:00 بتوقيت إثيوبيا)" data-am="የአሁኑ ዓመት:  (ከጎርጎርያን ቀን መቁጠሪያ በስተጀርባ 7-8 ዓመታት) | ወራት: 13 ወራት (12 ወራት 30 ቀን + ጳጉሜ — 5 ወይም 6 ተጨማሪ ቀናት) | አዲስ ዓመት (እንቁጣጣሽ): መስከረም 1 | ታዋቂ አባባል: 'ኢትዮጵያ 13 ወር የፀሐይ ብርሃን አላት' | ሰዓት: ቀን ጎህ ሲቀድ ይጀምራል (ከሰዓት 12 ማለት ከማለዳ 6 ሰዓት ማለት ነው)">Current Year: 2017 (7-8 years behind Gregorian calendar) | Months: 13 months (12 months of 30 days + Pagume — 5 or 6 extra days) | New Year (Enkutatash): September 11 (Meskerem 1) | Famous saying: 'Ethiopia has 13 months of sunshine' | Time: Day starts at dawn (6:00 AM = 12:00 Ethiopian time)</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-users"></i> <span data-en="Tribes & Ethnicities" data-ar="القبائل والعرقيات" data-am="ጎሳዎች እና ብሄረሰቦች">Tribes & Ethnicities</span></h3>
+        <div class="section-content">
+            <p data-en="Over 80 ethnic groups and more than 80 languages across Ethiopia." data-ar="أكثر من 80 مجموعة عرقية وأكثر من 80 لغة في جميع أنحاء إثيوبيا." data-am="በኢትዮጵያ ውስጥ ከ80 በላይ ብሄረሰቦች እና ከ80 በላይ ቋንቋዎች።">Over 80 ethnic groups and more than 80 languages across Ethiopia.</p>
+            <div class="tribes-grid">
+                <span class="tribe-tag">Oromo</span><span class="tribe-tag">Amhara</span><span class="tribe-tag">Tigrayan</span>
+                <span class="tribe-tag">Sidama</span><span class="tribe-tag">Somali</span><span class="tribe-tag">Gurage</span>
+                <span class="tribe-tag">Afar</span><span class="tribe-tag">Wolayta</span><span class="tribe-tag">Hadiya</span>
+                <span class="tribe-tag">Hamer</span><span class="tribe-tag">Mursi</span><span class="tribe-tag">Karo</span>
+                <span class="tribe-tag">Surma</span><span class="tribe-tag">Dorze</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-trophy"></i> <span data-en="Great Victories" data-ar="الانتصارات العظيمة" data-am="ታላላቅ ድሎች">Great Victories</span></h3>
+        <div class="timeline-item">
+            <div class="timeline-title"><span data-en="⚔️ Battle of Adwa (March 1, 1896)" data-ar="⚔️ معركة عدوة (1 مارس 1896)" data-am="⚔️ የዓድዋ ጦርነት (መጋቢት 1, 1896)">⚔️ Battle of Adwa (March 1, 1896)</span></div>
+            <p data-en="Emperor Menelik II led Ethiopian forces to defeat 17,000 Italian soldiers. Ethiopia remains the ONLY African nation to never be colonized. Adwa Victory Day is celebrated annually on March 1st." data-ar="قاد الإمبراطور منليك الثاني القوات الإثيوبية لهزيمة 17,000 جندي إيطالي. تظل إثيوبيا الدولة الأفريقية الوحيدة التي لم تستعمر قط. يتم الاحتفال بيوم انتصار عدوة سنويًا في 1 مارس." data-am="ንጉሠ ነገሥት ምኒልክ ቀዳማዊ የኢትዮጵያን ጦር በመምራት 17,000 ጣሊያን ወታደሮችን አሸነፈ። ኢትዮጵያ ቅኝ ግዛት ያልነበረባት ብቸኛዋ የአፍሪካ ሀገር ሆና ትኖራለች። የዓድዋ ድል ቀን በየዓመቱ መጋቢት 1 ይከበራል።">Emperor Menelik II led Ethiopian forces to defeat 17,000 Italian soldiers. Ethiopia remains the ONLY African nation to never be colonized. Adwa Victory Day is celebrated annually on March 1st.</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3 class="section-title"><i class="fas fa-landmark"></i> <span data-en="UNESCO World Heritage Sites" data-ar="مواقع التراث العالمي لليونسكو" data-am="የዩኔስኮ ዓለም ቅርስ ቦታዎች">UNESCO World Heritage Sites</span></h3>
+        <div class="tag-list">
+            <span class="tag">Lalibela Rock Churches</span><span class="tag">Axum Obelisks</span><span class="tag">Fasil Ghebbi (Gondar)</span>
+            <span class="tag">Simien Mountains</span><span class="tag">Harar Jugol</span><span class="tag">Omo Valley</span>
+            <span class="tag">Tiya</span><span class="tag">Konso Cultural Landscape</span><span class="tag">Bale Mountains</span>
+        </div>
+    </div>
+
+    <div class="back-home">
+        <a href="index.html" class="btn-gold" data-en="← Back to Home" data-ar="← العودة إلى الرئيسية" data-am="← ወደ መነሻ ተመለስ">← Back to Home</a>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>Michael Tour Ethiopia</strong> | <span data-en="Premium Car Rent & Tour" data-ar="تأجير سيارات فاخر وجولات" data-am="ፕሪሚየም የመኪና ኪራይ እና ጉብኝት">Premium Car Rent & Tour</span></p>
+    <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
+    <p>📍 <span data-en="Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba" data-ar="منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا" data-am="ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2025 Michael Tour Ethiopia | <span data-en="All rights reserved" data-ar="جميع الحقوق محفوظة" data-am="መብቱ በህግ የተጠበቀ ነው">All rights reserved</span></p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function updateLanguage(lang) {
+        document.querySelectorAll('[data-en]').forEach(el => {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'IMG') return;
+            const text = el.getAttribute(`data-${lang}`);
+            if (text) {
+                if (el.tagName === 'H1' && lang === 'en') el.innerHTML = text;
+                else if (el.tagName === 'H1' && lang === 'ar') el.innerHTML = text;
+                else if (el.tagName === 'H1' && lang === 'am') el.innerHTML = text;
+                else el.textContent = text;
+            }
+        });
+        
+        // Set RTL for Arabic
+        if (lang === 'ar') {
+            document.body.setAttribute('dir', 'rtl');
+            document.querySelectorAll('.section-title').forEach(el => {
+                el.style.borderLeft = 'none';
+                el.style.borderRight = '3px solid #DAA520';
+                el.style.paddingLeft = '0';
+                el.style.paddingRight = '12px';
+            });
+        } else {
+            document.body.setAttribute('dir', 'ltr');
+            document.querySelectorAll('.section-title').forEach(el => {
+                el.style.borderRight = 'none';
+                el.style.borderLeft = '3px solid #DAA520';
+                el.style.paddingRight = '0';
+                el.style.paddingLeft = '12px';
+            });
+        }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLang = btn.getAttribute('data-lang');
+            updateLanguage(currentLang);
+        });
+    });
+</script>
+</body>
+</html>

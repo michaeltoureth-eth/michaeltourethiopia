@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Booking | Michael Tour Ethiopia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        [dir="rtl"] { direction: rtl; text-align: right; }
+        [dir="ltr"] { direction: ltr; text-align: left; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #DAA520; border-radius: 3px; }
+
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 45px; width: auto; }
+        .logo h1 { font-size: 1.2rem; font-weight: 700; background: linear-gradient(135deg, #ffffff, #DAA520); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; font-weight: 500; padding: 0.4rem 0; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #DAA520; transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #DAA520; }
+        .book-btn { background: #DAA520; color: black !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .book-btn::after { display: none; }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.3rem;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .lang-btn.active { background: #DAA520; color: black; }
+        .lang-btn:hover:not(.active) { background: rgba(218, 165, 32, 0.3); }
+
+        .social-wrapper { display: flex; justify-content: center; margin: 0.5rem 1rem; flex-wrap: wrap; gap: 1rem; }
+        .social-card {
+            width: fit-content;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            gap: 15px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50px;
+        }
+        .socialContainer {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containerPhone:hover { background-color: #34B7F1; }
+        .containerTikTok:hover { background-color: #25f4ee; }
+        .containerFacebook:hover { background-color: #1877f2; }
+        .containerWhatsApp:hover { background-color: #25D366; }
+        .socialContainer:active { transform: scale(0.9); }
+        .socialSvg { width: 20px; height: 20px; }
+        .socialSvg path { fill: rgb(255, 255, 255); }
+        .socialContainer:hover .socialSvg { animation: slide-in-top 0.3s both; }
+        @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+        .page-header { text-align: center; padding: 2rem 1rem; background: rgba(0, 0, 0, 0.5); margin: 1rem; border-radius: 24px; backdrop-filter: blur(5px); }
+        .page-header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .page-header h1 span { color: #DAA520; }
+        .page-header p { font-size: 0.9rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 1.5rem; }
+        .booking-form {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500; color: #DAA520; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 0.85rem;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #DAA520; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .btn-submit {
+            background: #DAA520;
+            color: black;
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 0.5rem;
+        }
+        .btn-submit:hover { background: #FFD700; transform: translateY(-2px); }
+        .info-box {
+            background: rgba(218, 165, 32, 0.08);
+            border-radius: 20px;
+            padding: 1.2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        .footer { background: rgba(0, 0, 0, 0.9); text-align: center; padding: 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(218, 165, 32, 0.3); }
+        .footer p { font-size: 0.7rem; margin: 0.3rem 0; }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; text-align: center; }
+            .page-header h1 { font-size: 1.6rem; }
+            .container { padding: 1rem; }
+            .booking-form { padding: 1.2rem; }
+            .form-row { grid-template-columns: 1fr; gap: 0.8rem; }
+            .social-card { padding: 8px 15px; gap: 10px; }
+            .socialContainer { width: 38px; height: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <h1>MICHAEL TOUR <span>ETHIOPIA</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-ar="الرئيسية" data-am="ዋና ገጽ">Home</a></li>
+            <li><a href="about.html" data-en="About" data-ar="عن" data-am="ስለ">About</a></li>
+            <li><a href="gallery.html" data-en="Gallery" data-ar="معرض" data-am="ማዕከለ ስዕላት">Gallery</a></li>
+            <li><a href="tours.html" data-en="Destinations" data-ar="وجهات" data-am="መዳረሻዎች">Destinations</a></li>
+            <li><a href="cars.html" data-en="Cars" data-ar="سيارات" data-am="መኪናዎች">Cars</a></li>
+            <li><a href="booking.html" class="book-btn" data-en="Book" data-ar="احجز" data-am="አሁን ይመዝገቡ">Book</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="social-wrapper">
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ar">العربية</button>
+        <button class="lang-btn" data-lang="am">አማርኛ</button>
+    </div>
+    <div class="social-card">
+        <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
+        <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
+        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1 id="pageTitle">Request a <span>Quote</span></h1>
+    <p id="pageSubtitle">Fill out the form and we'll respond within 24 hours</p>
+</div>
+
+<div class="container">
+    <div class="booking-form">
+        <!-- FORMSPREE FORM - WORKS! -->
+        <form action="https://formspree.io/f/xeenerwv" method="POST" id="bookingForm">
+            <input type="hidden" name="_subject" value="New Booking Request - Michael Tour Ethiopia">
+            <input type="hidden" name="_replyto" id="replyto">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-en="Full Name *" data-ar="الاسم الكامل *" data-am="ሙሉ ስም *">Full Name *</label>
+                    <input type="text" name="name" id="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label data-en="Email *" data-ar="البريد الإلكتروني *" data-am="ኢሜይል *">Email *</label>
+                    <input type="email" name="email" id="email" required placeholder="your@email.com">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-en="Phone Number" data-ar="رقم الهاتف" data-am="ስልክ ቁጥር">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" placeholder="0909505009">
+                </div>
+                <div class="form-group">
+                    <label data-en="Service Type" data-ar="نوع الخدمة" data-am="የአገልግሎት አይነት">Service Type</label>
+                    <select name="service" id="service">
+                        <option value="Tour Package">Tour Package</option>
+                        <option value="Car Rental Only">Car Rental Only</option>
+                        <option value="Camping Expedition">Camping Expedition</option>
+                        <option value="Wedding Service">Wedding Service</option>
+                        <option value="Corporate / Group">Corporate / Group</option>
+                        <option value="Both Tour & Car">Both Tour & Car</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label data-en="Travel / Rental Date" data-ar="تاريخ السفر / الإيجار" data-am="የጉዞ / የኪራይ ቀን">Travel / Rental Date</label>
+                    <input type="date" name="travel_date" id="date">
+                </div>
+                <div class="form-group">
+                    <label data-en="Number of People" data-ar="عدد الأشخاص" data-am="የሰዎች ቁጥር">Number of People</label>
+                    <input type="number" name="people" id="people" min="1" value="2">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label data-en="Preferred Destination / Car" data-ar="الوجهة / السيارة المفضلة" data-am="ተመራጭ መዳረሻ / መኪና">Preferred Destination / Car</label>
+                <select name="preference" id="preference">
+                    <option>Lalibela Rock Churches</option>
+                    <option>Simien Mountains</option>
+                    <option>Axum Obelisks</option>
+                    <option>Gondar Castle</option>
+                    <option>Danakil Depression</option>
+                    <option>Omo Valley Tribes</option>
+                    <option>Harar Jugol</option>
+                    <option>Bale Mountains</option>
+                    <option>Land Rover Defender 110</option>
+                    <option>Toyota Land Cruiser 76</option>
+                    <option>Toyota Land Cruiser 80</option>
+                    <option>Toyota Land Cruiser 200</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label data-en="Message / Special Requests" data-ar="رسالة / طلبات خاصة" data-am="መልእክት / ልዩ ጥያቄዎች">Message / Special Requests</label>
+                <textarea rows="4" name="message" id="message" placeholder="Tell us about your travel plans, camping needs, group size, or any special requirements..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit" id="submitBtn">Send Request →</button>
+            <div id="formFeedback" style="margin-top: 1rem; text-align: center;"></div>
+        </form>
+    </div>
+    
+    <div class="info-box">
+        <p><i class="fas fa-phone-alt"></i> <strong data-en="Call us directly:" data-ar="اتصل بنا مباشرة:" data-am="በቀጥታ ይደውሉልን:">Call us directly:</strong> 0909505009</p>
+        <p><i class="fab fa-tiktok"></i> <strong data-en="TikTok:" data-ar="تيك توك:" data-am="ቲክቶክ:">TikTok:</strong> @michaeltourandcarrent</p>
+        <p><i class="fas fa-envelope"></i> <strong data-en="Email:" data-ar="البريد الإلكتروني:" data-am="ኢሜይል:">Email:</strong> info@michaeltourethiopia.com</p>
+        <p style="margin-top: 0.5rem;" data-en="We respond within 24 hours" data-ar="نرد خلال 24 ساعة" data-am="በ24 ሰአት ውስጥ ምላሽ እንሰጣለን">We respond within 24 hours</p>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>Michael Tour Ethiopia</strong> | <span id="footerText">Premium Car Rent & Tour</span></p>
+    <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
+    <p>📍 <span id="locationText">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2025 Michael Tour Ethiopia | <span id="rightsText">All rights reserved</span></p>
+</footer>
+
+<script>
+    // Language translations
+    const translations = {
+        en: {
+            pageTitle: 'Request a <span>Quote</span>',
+            pageSubtitle: 'Fill out the form and we\'ll respond within 24 hours',
+            footerText: 'Premium Car Rent & Tour',
+            locationText: 'Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba',
+            rightsText: 'All rights reserved',
+            sending: 'Sending...',
+            success: '✅ Thank you! We will contact you within 24 hours.',
+            error: '❌ Something went wrong. Please call us at 0909505009 or try again.'
+        },
+        ar: {
+            pageTitle: 'طلب <span>عرض سعر</span>',
+            pageSubtitle: 'املأ النموذج وسنرد خلال 24 ساعة',
+            footerText: 'تأجير سيارات فاخر وجولات',
+            locationText: 'منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا',
+            rightsText: 'جميع الحقوق محفوظة',
+            sending: 'جاري الإرسال...',
+            success: '✅ شكرًا لك! سنتصل بك خلال 24 ساعة.',
+            error: '❌ حدث خطأ ما. يرجى الاتصال بنا على 0909505009 أو المحاولة مرة أخرى.'
+        },
+        am: {
+            pageTitle: 'የዋጋ <span>ጥያቄ</span> ያስገቡ',
+            pageSubtitle: 'ቅጹን ይሙሉ እና በ24 ሰአት ውስጥ ምላሽ እንሰጣለን',
+            footerText: 'ፕሪሚየም የመኪና ኪራይ እና ጉብኝት',
+            locationText: 'ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ',
+            rightsText: 'መብቱ በህግ የተጠበቀ ነው',
+            sending: 'በመላክ ላይ...',
+            success: '✅ እናመሰግናለን! በ24 ሰአት ውስጥ እንገናኛለን።',
+            error: '❌ የሆነ ስህተት ተፈጥሯል። እባክዎ በ0909505009 ይደውሉልን ወይም እንደገና ይሞክሩ።'
+        }
+    };
+
+    let currentLang = 'en';
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        document.getElementById('pageTitle').innerHTML = translations[lang].pageTitle;
+        document.getElementById('pageSubtitle').innerHTML = translations[lang].pageSubtitle;
+        document.getElementById('footerText').innerHTML = translations[lang].footerText;
+        document.getElementById('locationText').innerHTML = translations[lang].locationText;
+        document.getElementById('rightsText').innerHTML = translations[lang].rightsText;
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            const arText = link.getAttribute('data-ar');
+            const amText = link.getAttribute('data-am');
+            const enText = link.getAttribute('data-en');
+            if (lang === 'ar' && arText) link.textContent = arText;
+            else if (lang === 'am' && amText) link.textContent = amText;
+            else if (enText) link.textContent = enText;
+        });
+        
+        if (lang === 'ar') document.body.setAttribute('dir', 'rtl');
+        else document.body.setAttribute('dir', 'ltr');
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    // Form submission with Formspree
+    const form = document.getElementById('bookingForm');
+    const feedback = document.getElementById('formFeedback');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        
+        if (!name || !email) {
+            feedback.innerHTML = currentLang === 'en' ? '❌ Please fill in your name and email' : 
+                                currentLang === 'ar' ? '❌ يرجى ملء اسمك وبريدك الإلكتروني' : 
+                                '❌ እባክዎ ስምዎን እና ኢሜይልዎን ይሙሉ';
+            return;
+        }
+        
+        // Update the replyto field
+        document.getElementById('replyto').value = email;
+        
+        // Show sending state
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = translations[currentLang].sending;
+        submitBtn.disabled = true;
+        
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                feedback.innerHTML = `<span style="color: #DAA520;">${translations[currentLang].success}</span>`;
+                form.reset();
+            } else {
+                feedback.innerHTML = `<span style="color: #ffaa00;">${translations[currentLang].error}</span>`;
+            }
+        } catch (error) {
+            feedback.innerHTML = `<span style="color: #ffaa00;">${translations[currentLang].error}</span>`;
+        }
+        
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        setTimeout(() => { feedback.innerHTML = ''; }, 6000);
+    });
+</script>
+</body>
+</html>
