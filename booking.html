@@ -101,6 +101,7 @@
         .containerTikTok:hover { background-color: #25f4ee; }
         .containerFacebook:hover { background-color: #1877f2; }
         .containerWhatsApp:hover { background-color: #25D366; }
+        .containerPinterest:hover { background-color: #E60023; }
         .socialContainer:active { transform: scale(0.9); }
         .socialSvg { width: 20px; height: 20px; }
         .socialSvg path { fill: rgb(255, 255, 255); }
@@ -108,7 +109,7 @@
         @keyframes slide-in-top { 0% { transform: translateY(-30px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
 
         .page-header { text-align: center; padding: 2rem 1rem; background: rgba(0, 0, 0, 0.5); margin: 1rem; border-radius: 24px; backdrop-filter: blur(5px); }
-        .page-header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
         .page-header h1 span { color: #DAA520; }
         .page-header p { font-size: 0.9rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
 
@@ -161,7 +162,7 @@
 
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; text-align: center; }
-            .page-header h1 { font-size: 1.6rem; }
+            .page-header h1 { font-size: 1.8rem; }
             .container { padding: 1rem; }
             .booking-form { padding: 1.2rem; }
             .form-row { grid-template-columns: 1fr; gap: 0.8rem; }
@@ -198,8 +199,9 @@
     <div class="social-card">
         <a href="tel:0909505009" class="socialContainer containerPhone"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 .99V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 01.99 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></a>
         <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank" class="socialContainer containerTikTok"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.76-.08 1.4-.54 2.79-1.35 3.99-1.09 1.62-2.86 2.7-4.8 2.95-1.1.14-2.21.03-3.27-.32-1.68-.56-3.13-1.79-4.05-3.29-.91-1.48-1.18-3.17-.77-4.82.43-1.73 1.54-3.25 3.05-4.24 1.38-.91 3.05-1.4 4.75-1.36.08 1.14.15 2.28.23 3.41-1.26.09-2.54.52-3.52 1.33-.98.81-1.6 1.94-1.72 3.17-.09.96.18 1.94.76 2.73.58.79 1.47 1.36 2.45 1.55.86.16 1.75.03 2.53-.4.74-.41 1.31-1.06 1.6-1.82.32-.84.37-1.74.26-2.62-.05-1.8-.05-3.6-.05-5.4-.04 0-.04 0-.04 0z"/></svg></a>
-        <a href="https://www.facebook.com" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
+        <a href="https://www.facebook.com/share/1CQZ8hjxj2/" target="_blank" class="socialContainer containerFacebook"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg></a>
         <a href="https://wa.me/251909505009" target="_blank" class="socialContainer containerWhatsApp"><svg class="socialSvg" viewBox="0 0 24 24" fill="none"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.24.56-.99.99-1.51 1.03-.52.04-1.13-.07-2.34-.56-1.2-.49-2.6-1.74-3.65-2.87-1.05-1.13-1.9-2.47-2.08-3.23-.18-.76.05-1.15.17-1.32.13-.17.37-.36.47-.44.13-.1.26-.1.36-.02.1.08.67.9.89 1.21.07.11.11.23.04.37-.07.14-.14.25-.21.34-.07.09-.16.19-.23.29-.09.12-.19.26-.09.49.1.22.48.97.97 1.55.67.81 1.44 1.42 2.11 1.8.48.27.84.34.98.37.1.02.23-.02.31-.13.08-.11.45-.66.53-.86.08-.2.16-.15.27-.09.11.07.66.35.91.49.19.11.27.13.32.2.06.07.06.3-.03.74-.09.44-.47.78-.73.86-.26.08-.49.1-.49.1z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
+        <a href="https://pin.it/69FvUYRRa" target="_blank" class="socialContainer containerPinterest"><svg class="socialSvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.04 2.65 7.48 6.29 8.7-.09-.74-.17-1.88.04-2.69.18-.72 1.2-5.09 1.2-5.09s-.31-.62-.31-1.54c0-1.44.84-2.52 1.88-2.52.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.89 1.55 1.89 1.86 0 3.29-1.96 3.29-4.79 0-2.5-1.8-4.25-4.36-4.25-2.97 0-4.71 2.23-4.71 4.53 0 .9.35 1.86.78 2.38.09.1.1.2.07.31-.08.34-.27 1.09-.31 1.24-.05.19-.16.24-.37.14-1.39-.65-2.26-2.68-2.26-4.31 0-3.51 2.55-6.73 7.36-6.73 3.87 0 6.88 2.76 6.88 6.44 0 3.85-2.43 6.95-5.8 6.95-1.13 0-2.2-.59-2.56-1.28 0 0-.56 2.13-.69 2.65-.25.96-.93 1.93-1.5 2.58 1.09.34 2.23.52 3.39.52 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
     </div>
 </div>
 
@@ -286,16 +288,17 @@
     <div class="info-box">
         <p><i class="fas fa-phone-alt"></i> <strong data-en="Call us directly:" data-ar="اتصل بنا مباشرة:" data-am="በቀጥታ ይደውሉልን:">Call us directly:</strong> 0909505009</p>
         <p><i class="fab fa-tiktok"></i> <strong data-en="TikTok:" data-ar="تيك توك:" data-am="ቲክቶክ:">TikTok:</strong> @michaeltourandcarrent</p>
+        <p><i class="fab fa-pinterest"></i> <strong data-en="Pinterest:" data-ar="بينتريست:" data-am="ፒንተረስት:">Pinterest:</strong> @michaeltourandcarrent</p>
         <p><i class="fas fa-envelope"></i> <strong data-en="Email:" data-ar="البريد الإلكتروني:" data-am="ኢሜይል:">Email:</strong> info@michaeltourethiopia.com</p>
         <p style="margin-top: 0.5rem;" data-en="We respond within 24 hours" data-ar="نرد خلال 24 ساعة" data-am="በ24 ሰአት ውስጥ ምላሽ እንሰጣለን">We respond within 24 hours</p>
     </div>
 </div>
 
 <footer class="footer">
-    <p><strong>Michael Tour Ethiopia</strong> | <span id="footerText">Premium Car Rent & Tour</span></p>
+    <p><strong>Michael Tour Ethiopia</strong> | <span id="footerText" data-en="Premium Car Rent & Tour" data-ar="تأجير سيارات فاخر وجولات" data-am="ፕሪሚየም የመኪና ኪራይ እና ጉብኝት">Premium Car Rent & Tour</span></p>
     <p>📞 0909505009 | 📱 TikTok: @michaeltourandcarrent</p>
-    <p>📍 <span id="locationText">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
-    <p>© 2025 Michael Tour Ethiopia | <span id="rightsText">All rights reserved</span></p>
+    <p>📍 <span id="locationText" data-en="Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba" data-ar="منطقة الخدمة الرئيسية: أوروميا، إثيوبيا | أداما | أديس أبابا | بالي روبا" data-am="ዋና አገልግሎት አካባቢ: ኦሮሚያ፣ ኢትዮጵያ | አዳማ | አዲስ አበባ | ባሌ ሮባ">Primary Service Area: Oromia, Ethiopia | Adama | Addis Ababa | Bale Roba</span></p>
+    <p>© 2026 Michael Tour Ethiopia | <span id="rightsText" data-en="All rights reserved" data-ar="جميع الحقوق محفوظة" data-am="መብቱ በህግ የተጠበቀ ነው">All rights reserved</span></p>
 </footer>
 
 <script>
@@ -382,10 +385,8 @@
             return;
         }
         
-        // Update the replyto field
         document.getElementById('replyto').value = email;
         
-        // Show sending state
         const originalText = submitBtn.textContent;
         submitBtn.textContent = translations[currentLang].sending;
         submitBtn.disabled = true;
