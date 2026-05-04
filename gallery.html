@@ -251,10 +251,11 @@
 
 <script>
     // ============================================================
-    // COMPLETE GALLERY WITH ALL IMAGES - INCLUDING ANIMALS
+    // COMPLETE GALLERY - ALL EXISTING IMAGES PRESERVED + NEW ANIMALS ADDED
     // ============================================================
 
     const galleryImages = {
+        // ROYAL FAMILIES - All existing images preserved
         royal: [
             "https://i.ibb.co/FqmZf0VG/photo-1-2026-05-02-18-24-47.jpg",
             "https://i.ibb.co/yx7TFpL/image.jpg",
@@ -264,8 +265,15 @@
             "https://i.ibb.co/ZpPdqwHC/Iyasu-I-of-Ethiopia.jpg",
             "https://i.ibb.co/xtd6ZV0Q/Israel.jpg",
             "https://i.ibb.co/t0Yv4mm/Ioel.jpg",
-            "https://i.ibb.co/B5BRbs0n/Haile-Melekot.jpg"
+            "https://i.ibb.co/B5BRbs0n/Haile-Melekot.jpg",
+            "https://i.ibb.co/fG9hJr8Z/Igreja-de-Nossa-Senhora-do-Ros-rio-dos-Pretos-Salvador-Imagem-do-Santo-Elesb-o-2019-0539.jpg",
+            "https://i.ibb.co/1G5bRKHq/Gebre-Mesqel-Lalibela.png",
+            "https://i.ibb.co/fGxNy832/Gersem.jpg",
+            "https://i.ibb.co/QFKqSvkc/Gebre-Meskel-portrait.jpg",
+            "https://i.ibb.co/0pjP3rN9/Garter-encircled-Arms-of-Haile-Selassie-I-Emperor-of-Ethiopia.jpg",
+            "https://i.ibb.co/p79GTD1/Ethiopian-old-vibe.jpg"
         ],
+        // FOOD & COFFEE - All existing images preserved
         food: [
             "https://i.ibb.co/LDYsqWSV/ethiopia-foodie.jpg",
             "https://i.ibb.co/bMc1wrzz/Nothing-beats-habesha-food.jpg",
@@ -275,6 +283,7 @@
             "https://i.ibb.co/zhKYB87T/download-33.jpg",
             "https://i.ibb.co/svZ75MYY/download-32.jpg"
         ],
+        // CULTURE - All existing images preserved
         culture: [
             "https://i.ibb.co/bgcPdf1d/photo-16-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/mVnQPk92/photo-15-2026-05-02-18-24-48.jpg",
@@ -286,6 +295,12 @@
             "https://i.ibb.co/VpHdqfb9/photo-9-2026-05-02-18-24-47.jpg",
             "https://i.ibb.co/qLtbdYQD/photo-8-2026-05-02-18-24-47.jpg",
             "https://i.ibb.co/vvJ9rGLn/photo-7-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/ycWvGjs8/photo-6-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/hRvPMhdK/photo-5-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/BHjxGtSF/photo-4-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/S4bn4Lgy/photo-3-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/SXjRDvR0/photo-2-2026-05-02-18-24-47.jpg",
+            "https://i.ibb.co/H8LrNYB/photo-39-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/S8pH3zS/photo-37-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/xthyg5kP/photo-22-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/MkbfNQY6/photo-20-2026-05-02-18-24-48.jpg",
@@ -295,6 +310,7 @@
             "https://i.ibb.co/BV70F2zQ/Harar.jpg",
             "https://i.ibb.co/B2mzHN7y/Bisrate-Gabriel.jpg"
         ],
+        // FESTIVALS - All existing images preserved
         festivals: [
             "https://i.ibb.co/VpHdqfb9/photo-9-2026-05-02-18-24-47.jpg",
             "https://i.ibb.co/qLtbdYQD/photo-8-2026-05-02-18-24-47.jpg",
@@ -314,6 +330,7 @@
             "https://i.ibb.co/MkbfNQY6/photo-20-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/8LPWH3D7/image.jpg"
         ],
+        // PLACES & NATURE - All existing images preserved
         places: [
             "https://i.ibb.co/k6MCnJ9v/photo-51-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/qF9f5MVv/photo-50-2026-05-02-18-24-48.jpg",
@@ -323,8 +340,23 @@
             "https://i.ibb.co/bR39bN6g/photo-46-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/67RW4qfW/photo-45-2026-05-02-18-24-48.jpg",
             "https://i.ibb.co/7HszFd0/photo-44-2026-05-02-18-24-48.jpg",
-            "https://i.ibb.co/nN4yZzQm/photo-43-2026-05-02-18-24-48.jpg"
+            "https://i.ibb.co/nN4yZzQm/photo-43-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/rR6cN7hD/photo-42-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/PvyNy5CZ/photo-41-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/VyXYT5D/photo-40-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/Y7sdM9gR/photo-38-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/hFHw1Bnc/photo-29-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/bgVk6Vj3/photo-21-2026-05-02-18-24-48.jpg",
+            "https://i.ibb.co/CpYh0LDh/Oldest-ethiopian-bible.jpg",
+            "https://i.ibb.co/3Y0jK3p2/Jogol-harar-harari-harar-ethiopia.jpg",
+            "https://i.ibb.co/BKqhBCwZ/Gurage-gojo.jpg",
+            "https://i.ibb.co/jZP7N85p/Gonder-is-gearing-up-for-Timket-celebrations-gonder-Ethiopia-habeha-Timket-Travel.jpg",
+            "https://i.ibb.co/bgqJCccD/ethiopia-afar-danakil-and-tigray.jpg",
+            "https://i.ibb.co/ZpZzcKqw/harar-ethiopia.jpg",
+            "https://i.ibb.co/WpvJ90T0/ethiopia.jpg",
+            "https://i.ibb.co/p6DGmCCW/Ethiopia-Axum-Tigray-Obelisk.jpg"
         ],
+        // NEW - ANIMALS & WILDLIFE (All your new images)
         animals: [
             "https://i.ibb.co/WvStV6kn/photo-30-2026-05-04-13-28-32.jpg",
             "https://i.ibb.co/fcBxpjS/photo-31-2026-05-04-13-28-32.jpg",
@@ -335,8 +367,76 @@
             "https://i.ibb.co/XrLW8Q7H/photo-38-2026-05-04-13-28-32.jpg",
             "https://i.ibb.co/MDZ6sr4N/photo-40-2026-05-04-13-28-32.jpg",
             "https://i.ibb.co/Y7tyzLbX/photo-41-2026-05-04-13-28-32.jpg",
-            "https://i.ibb.co/p6cp2Sx4/photo-42-2026-05-04-13-28-32.jpg"
+            "https://i.ibb.co/p6cp2Sx4/photo-42-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/vvqCGTdq/photo-43-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/7tchCqFj/photo-44-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/RGXXyjxT/photo-45-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/6QmCKkr/photo-46-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/wh8J8wDg/photo-47-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/wZCngPms/photo-48-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/xqs9R5Xx/photo-49-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/JWTSxHVg/photo-50-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/S40X1Kd5/photo-51-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/gLBYVL2P/photo-52-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/bnxhbhY/photo-53-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/nN0ZXtK3/photo-54-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/B5N8jQMY/photo-55-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/rGd8WBgr/photo-56-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/4RvpHBBc/photo-57-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/nsxvt3R9/photo-58-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/YT0mSCcL/photo-59-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/5xR4vhMf/photo-60-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/jnnNyfv/photo-61-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/jdCZjKN/photo-62-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Xr3kmg4T/photo-63-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/8gmCcBsV/photo-64-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/s9W6M9mZ/photo-65-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/x8XDqSvj/photo-66-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/LhD7GfF4/photo-67-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/4RNQ4MVD/photo-68-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/DDnkRcTp/photo-69-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/CKzbcb1b/photo-70-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/twP9bSbS/photo-71-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/hxCQLV0N/photo-72-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/5hN8VMP8/photo-73-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/kd9xS97/photo-74-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Y9T54gh/photo-75-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Xx8P6571/photo-76-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/RTYbsQyM/photo-77-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/XfX4rFHs/photo-78-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/67JXtR3M/photo-79-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/tpyS0BJH/photo-80-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Qg4S8Wy/photo-81-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/xKk5B2rn/photo-82-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/0Tcsg8d/photo-83-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/YBh9W6tW/photo-84-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/XfWQwqTT/photo-85-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/qLYp9mKJ/photo-86-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/d02VfRrp/photo-87-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Tqrm0Fcf/photo-88-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/cSmDwLn4/photo-89-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/mCbGHG9q/photo-90-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/4ggmMXDH/photo-91-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/TB43bZHd/photo-92-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Xr3StDZy/photo-93-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Z67711G5/photo-94-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/whh3sdmn/photo-95-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/7d9FGtyw/photo-96-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/s981krnN/photo-97-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/jv6JnGwH/photo-98-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/qLbJ8gjj/photo-99-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/zhnrL7HP/photo-100-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/v64dMQMh/photo-101-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/hQdbBSn/photo-102-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/v4SCPnyH/photo-103-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/B27YRQJZ/photo-104-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/k6gcqtJ3/photo-105-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/S40Nb2tT/photo-106-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/ns1vW6K0/photo-107-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/3Xzcgt3/photo-108-2026-05-04-13-28-32.jpg",
+            "https://i.ibb.co/Lh2NPmPD/photo-109-2026-05-04-13-28-32.jpg"
         ],
+        // CAMPING - Empty for now, add later
         camping: []
     };
 
