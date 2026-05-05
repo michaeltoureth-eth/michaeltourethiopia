@@ -332,13 +332,36 @@
     function loadFeaturedCars() {
         const container = document.getElementById('featuredCars');
         if (!container) return;
-        container.innerHTML = featuredCars.map(car => `
-            <div class="car-card">
-                <div class="car-image"><img src="${car.image}" alt="${car.name}" onerror="this.parentElement.innerHTML='<i class="fas fa-car" style="font-size: 2rem; color: #DAA520;"></i>'"></div>
-                <div class="car-info"><h3>${car.name}</h3><p><i class="fas fa-users"></i> ${car.seats}</p><p style="color: #DAA520; font-size: 0.7rem;">📞 <span data-en="Call for price" data-ar="اتصل لمعرفة السعر" data-am="ዋጋ ለማወቅ ይደውሉ">Call for price</span></p><a href="booking.html" class="btn-gold" style="width:100%;display:block;padding:0.5rem;"><span data-en="Request →" data-ar="طلب ←" data-am="ጥያቄ አስገባ →">Request →</span></a></div>
-            </div>
-        `).join('');
+        
+        let html = '';
+        for (let i = 0; i < featuredCars.length; i++) {
+            const car = featuredCars[i];
+            html += `
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="${car.image}" alt="${car.name}">
+                    </div>
+                    <div class="car-info">
+                        <h3>${car.name}</h3>
+                        <p><i class="fas fa-users"></i> ${car.seats}</p>
+                        <p style="color: #DAA520; font-size: 0.7rem;">📞 <span data-en="Call for price" data-ar="اتصل لمعرفة السعر" data-am="ዋጋ ለማወቅ ይደውሉ">Call for price</span></p>
+                        <a href="booking.html" class="btn-gold" style="width:100%;display:block;padding:0.5rem;"><span data-en="Request →" data-ar="طلب ←" data-am="ጥያቄ አስገባ →">Request →</span></a>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
     }
+    
+    // Fix for images that fail to load
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.car-image img');
+        images.forEach(img => {
+            img.onerror = function() {
+                this.parentElement.innerHTML = '<i class="fas fa-car" style="font-size: 2rem; color: #DAA520;"></i>';
+            };
+        });
+    });
     
     loadFeaturedCars();
 
