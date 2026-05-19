@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Michael Tour Ethiopia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('images/background.png') repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .coming-soon {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            padding: 3rem 2rem;
+            border-radius: 32px;
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            animation: fadeIn 1s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #DAA520;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        h1 span {
+            color: #DAA520;
+        }
+        p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .countdown-box {
+            background: rgba(218, 165, 32, 0.1);
+            padding: 1rem;
+            border-radius: 16px;
+            min-width: 80px;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+        }
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #DAA520;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .contact {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact a {
+            color: #DAA520;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        .social {
+            margin-top: 1rem;
+        }
+        .social a {
+            color: white;
+            margin: 0 0.8rem;
+            font-size: 1.3rem;
+            transition: 0.3s;
+        }
+        .social a:hover {
+            color: #DAA520;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .countdown-box { min-width: 60px; padding: 0.5rem; }
+            .countdown-number { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="coming-soon">
+        <div class="logo">MICHAEL TOUR <span>ETHIOPIA</span></div>
+        <h1>Coming <span>Soon</span></h1>
+        <p>We are working hard to bring you the best Ethiopian travel experience. Our new website is launching soon!</p>
+        
+        <div class="countdown">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <p>📞 <strong>Call us:</strong> <a href="tel:0909505009">0909505009</a></p>
+            <p>✉️ <strong>Email:</strong> <a href="mailto:michaeltourethiopia@michaeltoureth.com">michaeltourethiopia@michaeltoureth.com</a></p>
+        </div>
+        
+        <div class="social">
+            <a href="https://www.tiktok.com/@michaeltourandcarrent" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1CQZ8hjxj2/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/251909505009" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://pin.it/69FvUYRRa" target="_blank"><i class="fab fa-pinterest"></i></a>
+        </div>
+    </div>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        // Set your launch date (edit this!)
+        const launchDate = new Date("June 15, 2026 00:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.querySelector(".countdown").innerHTML = "<h3>We're Live! 🎉</h3>";
+            }
+        }
+        
+        const countdown = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
